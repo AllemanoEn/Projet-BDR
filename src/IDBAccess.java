@@ -2,7 +2,7 @@ import java.sql.*;
 
 public interface IDBAccess {
 
-    void startDB();
+    void startDB() throws SQLException;
 
     ResultSet createUser(String username, String password, String email, String orientation);
 
