@@ -34,6 +34,26 @@ public class DB implements IDBAccess{
         return null;
     }
 
+    @Override
+    public ResultSet addDrink(String name, String type) {
+        return null;
+    }
+
+    @Override
+    public ResultSet getDrink(String name) {
+        return null;
+    }
+
+    @Override
+    public ResultSet addComment(String drinkName, String comment, int note) {
+        return null;
+    }
+
+    @Override
+    public ResultSet getOrientationLeaderboard() {
+        return null;
+    }
+
     /*public static void main(String ... args) throws SQLException {
 
         Connection connection = DriverManager.getConnection("jdbc:postgresql://projetbdr2020.postgres.database.azure.com/", "bdr@projetbdr2020", "root-2020");
