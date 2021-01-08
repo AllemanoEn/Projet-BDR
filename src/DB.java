@@ -1,10 +1,34 @@
 import java.sql.*;
 
-public class DB {
+public class DB implements IDBAccess{
 
-    public static void main(String ... args) throws SQLException {
+    @Override
+    public void startDB() {
 
+<<<<<<< HEAD
         Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/bdr?currentSchema=projet", "bdr", "bdr");
+=======
+    }
+
+    @Override
+    public ResultSet createUser(String username, String password, String email, String orientation) {
+        return null;
+    }
+
+    @Override
+    public ResultSet login(String username, String password) {
+        return null;
+    }
+
+    @Override
+    public ResultSet getLeaderboard() {
+        return null;
+    }
+
+    /*public static void main(String ... args) throws SQLException {
+
+        Connection connection = DriverManager.getConnection("jdbc:postgresql://projetbdr2020.postgres.database.azure.com/", "bdr@projetbdr2020", "root-2020");
+>>>>>>> main
 
         System.out.println("Java JDBC PostgreSQL Example");
         // When this class first attempts to establish a connection, it automatically loads any JDBC 4.0 drivers found within
@@ -27,7 +51,7 @@ public class DB {
             }
         }
 
-    }
+    }*/
 
 }
 
