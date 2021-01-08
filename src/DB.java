@@ -3,11 +3,20 @@ import java.sql.*;
 public class DB implements IDBAccess{
 
     @Override
-    public void startDB() {
+    public void startDB() throws SQLException {
 
-<<<<<<< HEAD
         Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/bdr?currentSchema=projet", "bdr", "bdr");
-=======
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM pagila.actor");
+        ResultSetMetaData rsmd = resultSet.getMetaData();
+        int columnsNumber = rsmd.getColumnCount();
+        while (resultSet.next()) {
+            for (int i = 1; i <= columnsNumber; i++) {
+                if (i > 1) System.out.print(", \n ");
+                String columnValue = resultSet.getString(i);
+                System.out.print(columnValue + " " + rsmd.getColumnName(i));
+            }
+        }
     }
 
     @Override
