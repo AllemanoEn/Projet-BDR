@@ -1,3 +1,4 @@
+import javax.xml.transform.Result;
 import java.sql.*;
 
 public interface IDBAccess {
@@ -9,5 +10,14 @@ public interface IDBAccess {
     ResultSet login(String username, String password);
 
     ResultSet getLeaderboard();
+
+    ResultSet addDrink(String name, String type);
+
+    ResultSet getDrink(String name);
+
+    ResultSet addComment(String drinkName, String comment, int note);
+
+    ResultSet getOrientationLeaderboard();
+
 
 }
