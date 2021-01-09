@@ -2,11 +2,16 @@ import java.sql.*;
 
 public class DB implements IDBAccess{
 
+    Connection connection;
+    Statement statement;
+
     @Override
     public void startDB() throws SQLException {
 
-        Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/bdr?currentSchema=projet", "bdr", "bdr");
-        Statement statement = connection.createStatement();
+        this.connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/bdr?currentSchema=projet", "bdr", "bdr");
+        this.statement= connection.createStatement();
+
+       /*
         ResultSet resultSet = statement.executeQuery("SELECT * FROM pagila.actor");
         ResultSetMetaData rsmd = resultSet.getMetaData();
         int columnsNumber = rsmd.getColumnCount();
@@ -17,10 +22,15 @@ public class DB implements IDBAccess{
                 System.out.print(columnValue + " " + rsmd.getColumnName(i));
             }
         }
+
+        */
     }
 
     @Override
-    public ResultSet createUser(String username, String password, String email, String orientation) {
+    public ResultSet createUser(String username, String password, String email, String orientation) throws SQLException {
+
+        statement.executeUpdate("INSERT INTO utilisateur VALUES ('"+username+"', '"+password+"','"+email+"','"+orientation+"',FALSE); ");
+
         return null;
     }
 
@@ -40,7 +50,17 @@ public class DB implements IDBAccess{
     }
 
     @Override
-    public ResultSet getDrink(String name) {
+    public ResultSet getDrink(String name) throws SQLException {
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM boisson_alcolise WHERE nom = '"+ name +"'");
+        ResultSetMetaData rsmd = resultSet.getMetaData();
+        int columnsNumber = rsmd.getColumnCount();
+        while (resultSet.next()) {
+            for (int i = 1; i <= columnsNumber; i++) {
+                if (i > 1) System.out.print(",\n ");
+                String columnValue = resultSet.getString(i);
+                System.out.print(columnValue + " " + rsmd.getColumnName(i));
+            }
+        }
         return null;
     }
 
@@ -50,7 +70,18 @@ public class DB implements IDBAccess{
     }
 
     @Override
-    public ResultSet getOrientationLeaderboard() {
+    public ResultSet getOrientationLeaderboard() throws SQLException {
+
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM classement_orientation ");
+        ResultSetMetaData rsmd = resultSet.getMetaData();
+        int columnsNumber = rsmd.getColumnCount();
+        while (resultSet.next()) {
+            for (int i = 1; i <= columnsNumber; i++) {
+                if (i > 1) System.out.print(",\n ");
+                String columnValue = resultSet.getString(i);
+                System.out.print(columnValue + " " + rsmd.getColumnName(i));
+            }
+        }
         return null;
     }
 

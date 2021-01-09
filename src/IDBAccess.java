@@ -5,7 +5,7 @@ public interface IDBAccess {
 
     void startDB() throws SQLException;
 
-    ResultSet createUser(String username, String password, String email, String orientation);
+    ResultSet createUser(String username, String password, String email, String orientation) throws SQLException;
 
     ResultSet login(String username, String password);
 
@@ -13,11 +13,11 @@ public interface IDBAccess {
 
     ResultSet addDrink(String name, String type);
 
-    ResultSet getDrink(String name);
+    ResultSet getDrink(String name) throws SQLException;
 
     ResultSet addComment(String drinkName, String comment, int note);
 
-    ResultSet getOrientationLeaderboard();
+    ResultSet getOrientationLeaderboard() throws SQLException;
 
 
 }
