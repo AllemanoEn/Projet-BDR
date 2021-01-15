@@ -5,7 +5,7 @@ public interface IDBAccess {
 
     void startDB() throws SQLException;
 
-    ResultSet createUser(String username, String password, String email, String orientation) throws SQLException;
+    ResultSet createUser(String username, String password, String email, int orientation) throws SQLException;
 
     ResultSet login(String username, String password);
 
