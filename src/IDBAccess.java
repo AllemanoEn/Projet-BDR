@@ -7,7 +7,7 @@ public interface IDBAccess {
 
     boolean createUser(String username, String password, String email, int orientation) throws SQLException;
 
-    ResultSet login(String username, String password);
+    boolean login(String username, String password) throws SQLException;
 
     ResultSet getLeaderboard();
 

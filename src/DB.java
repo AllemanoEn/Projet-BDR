@@ -32,8 +32,20 @@ public class DB implements IDBAccess{
     }
 
     @Override
-    public ResultSet login(String username, String password) {
-        return null;
+    public boolean login(String username, String password) throws SQLException {
+
+        preparedStatement = connection.prepareStatement("SELECT count(pseudo) FROM utilisateur WHERE pseudo = ? AND password = ?;");
+        preparedStatement.setString(1,username);
+        preparedStatement.setString(2,password);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        boolean exist = false;
+        while (resultSet.next()) {
+             exist = resultSet.getBoolean(1);
+        }
+        if (exist) {
+            return true;
+        }
+        return false;
     }
 
     @Override
@@ -58,9 +70,8 @@ public class DB implements IDBAccess{
         int columnsNumber = rsmd.getColumnCount();
         while (resultSet.next()) {
             for (int i = 1; i <= columnsNumber; i++) {
-                if (i > 1) System.out.print(",\n ");
                 String columnValue = resultSet.getString(i);
-                System.out.print(columnValue + " " + rsmd.getColumnName(i));
+                System.out.print(columnValue + " " + rsmd.getColumnName(i) +",\n");
             }
         }
         return null;
@@ -80,11 +91,12 @@ public class DB implements IDBAccess{
         int columnsNumber = rsmd.getColumnCount();
         while (resultSet.next()) {
             for (int i = 1; i <= columnsNumber; i++) {
-                if (i > 1) System.out.print(",\n ");
                 String columnValue = resultSet.getString(i);
-                System.out.print(columnValue + " " + rsmd.getColumnName(i));
+                System.out.print(columnValue + " " + rsmd.getColumnName(i) +",\n");
             }
         }
+
+
         return null;
     }
 

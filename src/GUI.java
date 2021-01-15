@@ -11,8 +11,24 @@ public class GUI {
 
         oui.getOrientationLeaderboard();
 
-        System.out.println("\n-----");
+        System.out.println("-----");
         oui.getDrink("Boxer");
+
+        System.out.println("-----");
+        if (oui.login("Paul", "mypassword")){
+            System.out.println("Paul est log");
+        }
+        else{
+            System.out.println("Paul est pas log");
+        }
+
+        System.out.println("-----");
+        if (oui.login("Marc", "dutrou")){
+            System.out.println("Marc n'est log");
+        }
+        else{
+            System.out.println("Marc est pas log");
+        }
 
         /*
         JFrame frame = new JFrame("Chat Frame");
