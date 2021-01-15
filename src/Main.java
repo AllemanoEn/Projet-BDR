@@ -3,13 +3,17 @@ import db.IDBAccess;
 import db.Utilisateur;
 
 
+import javax.swing.*;
 import java.sql.SQLException;
+import gui.MainView;
 
 public class Main {
     public static void main(String ... args) throws SQLException {
-        //MainView mainView = new MainView();
+        MainView mainView = new MainView();
 
         //mainView.show();
+
+
 
         IDBAccess oui = new DB();
 
