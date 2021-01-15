@@ -9,9 +9,9 @@ public interface IDBAccess {
 
     boolean login(String username, String password) throws SQLException;
 
-    ResultSet getLeaderboard();
+    ResultSet getLeaderboard() throws SQLException;
 
-    ResultSet addDrink(String name, String type);
+    void addDrink(String name, int type, int quantite, int prixvente, int prixachat) throws SQLException;
 
     ResultSet getDrink(String name) throws SQLException;
 
