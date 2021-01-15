@@ -82,7 +82,6 @@ public class DB implements IDBAccess {
     }
 
 
-     // non
     @Override
     public ResultSet getDrink(String name) throws SQLException {
         preparedStatement = connection.prepareStatement("SELECT * FROM boisson_alcolise WHERE nom =?");
@@ -118,8 +117,6 @@ public class DB implements IDBAccess {
                 System.out.print(columnValue + " " + rsmd.getColumnName(i) +",\n");
             }
         }
-
-
         return null;
     }
 
