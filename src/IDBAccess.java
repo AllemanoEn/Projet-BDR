@@ -15,7 +15,7 @@ public interface IDBAccess {
 
     ResultSet getDrink(String name) throws SQLException;
 
-    ResultSet addComment(String drinkName, String comment, int note);
+    void addComment(int note, String comment, String commentBy, int boisson) throws SQLException;
 
     ResultSet getOrientationLeaderboard() throws SQLException;
 
