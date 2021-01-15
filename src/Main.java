@@ -1,4 +1,3 @@
-import gui.MainView;
 import db.DB;
 import db.IDBAccess;
 import db.Utilisateur;
@@ -8,9 +7,9 @@ import java.sql.SQLException;
 
 public class Main {
     public static void main(String ... args) throws SQLException {
-        MainView mainView = new MainView();
+        //MainView mainView = new MainView();
 
-        mainView.show();
+        //mainView.show();
 
         IDBAccess oui = new DB();
 
