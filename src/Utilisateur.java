@@ -8,5 +8,9 @@ public class Utilisateur {
         this.admin = admin;
     }
 
+    public String getPseudo() {
+        return pseudo;
+    }
+
 
 }

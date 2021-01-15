@@ -96,11 +96,11 @@ public class DB implements IDBAccess{
     }
 
     @Override
-    public void addComment(int note, String comment, String commentBy, int boisson) throws SQLException {
+    public void addComment(int note, String comment, Utilisateur user, int boisson) throws SQLException {
         preparedStatement = connection.prepareStatement("INSERT INTO commentaire (nom, type, quantitestock, prixvente, prixachat) VALUES (?,?,?,?);");
         preparedStatement.setInt(1,note);
         preparedStatement.setString(2,comment);
-        preparedStatement.setString(3,commentBy);
+        preparedStatement.setString(3,user.getPseudo());
         preparedStatement.setInt(4,boisson);
 
         try{
