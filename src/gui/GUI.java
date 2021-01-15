@@ -1,10 +1,15 @@
+package gui;
+
 import javax.swing.*;
 import java.awt.*;
 import java.sql.*;
+import java.util.Arrays;
 import java.util.LinkedList;
+import db.*;
 
 public class GUI {
     IDBAccess idbAccess;
+
     public void show() {
 
         try {
@@ -15,12 +20,6 @@ public class GUI {
             System.out.println(e.getMessage());
             return;
         }
-        //oui.createUser("a","a","a","2");
-
-        //oui.getOrientationLeaderboard();
-
-        //System.out.println("\n-----");
-        //oui.getDrink("Boxer");
 
 
         JFrame frame = new JFrame("ChillOut");
@@ -69,12 +68,35 @@ public class GUI {
 
         String[] leaderBoard = new String[3];
 
-        JList jList = new JList(leaderBoard);
+        JList jList = new JList(getLeaderBoard());
+        JList jList2 = new JList(getLeaderBoard());
         panelLB.add(jList);
 
         frame.getContentPane().add(BorderLayout.WEST , panelLB);
         frame.setVisible(true);
 
+    }
+
+    private JPanel genLeaderBoard() {
+        JPanel lb = new JPanel();
+
+        try {
+            ResultSet resultSet = idbAccess.getLeaderboard();
+
+
+            ResultSetMetaData rsmd = resultSet.getMetaData();
+            int columnsNumber = rsmd.getColumnCount();
+            while (resultSet.next()) {
+                
+                //lb.add(new J)
+                //list.add(String.format("%-40s:%2s", resultSet.getString(1), resultSet.getString(2)));
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        
+        return lb;
     }
 
     public String[] getLeaderBoard() {
@@ -88,15 +110,7 @@ public class GUI {
             ResultSetMetaData rsmd = resultSet.getMetaData();
             int columnsNumber = rsmd.getColumnCount();
             while (resultSet.next()) {
-                for (int i = 1; i <= columnsNumber; i++) {
-                    String columnValue = resultSet.getString(i);
-                    //System.out.print(columnValue + " " + rsmd.getColumnName(i));
-                    stringBuilder.append(columnValue);
-                    stringBuilder.append(" ");
-
-;                }
-                list.add(stringBuilder.toString());
-                stringBuilder = new StringBuilder();
+                list.add(String.format("%-40s:%2s", resultSet.getString(1), resultSet.getString(2)));
             }
 
         } catch (SQLException e) {

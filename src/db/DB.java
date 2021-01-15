@@ -1,6 +1,10 @@
+package db;
+
+import db.IDBAccess;
+
 import java.sql.*;
 
-public class DB implements IDBAccess{
+public class DB implements IDBAccess {
     PreparedStatement preparedStatement;
     Connection connection;
 
@@ -32,11 +36,11 @@ public class DB implements IDBAccess{
     }
 
     @Override
-    public boolean login(String username, String password) throws SQLException {
+    public boolean login(Utilisateur utilisateur) throws SQLException {
 
         preparedStatement = connection.prepareStatement("SELECT count(pseudo) FROM utilisateur WHERE pseudo = ? AND password = ?;");
-        preparedStatement.setString(1,username);
-        preparedStatement.setString(2,password);
+        preparedStatement.setString(1,utilisateur.getPseudo());
+        preparedStatement.setString(2,utilisateur.getPassword());
         ResultSet resultSet = preparedStatement.executeQuery();
         boolean exist = false;
         while (resultSet.next()) {

@@ -1,13 +1,18 @@
+package db;
+
 import javax.xml.transform.Result;
 import java.sql.*;
 
+
 public interface IDBAccess {
+
+    public Utilisateur utilisateur = null;
 
     void startDB() throws SQLException;
 
     boolean createUser(String username, String password, String email, int orientation) throws SQLException;
 
-    boolean login(String username, String password) throws SQLException;
+    boolean login(Utilisateur utilisateur) throws SQLException;
 
     ResultSet getLeaderboard() throws SQLException;
 
