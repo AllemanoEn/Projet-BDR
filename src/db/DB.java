@@ -1,8 +1,8 @@
 package db;
 
-import db.IDBAccess;
 
 import java.sql.*;
+
 
 public class DB implements IDBAccess {
     PreparedStatement preparedStatement;
