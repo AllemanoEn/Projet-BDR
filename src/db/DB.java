@@ -84,7 +84,7 @@ public class DB implements IDBAccess {
 
     @Override
     public ResultSet getDrink(String name) throws SQLException {
-        preparedStatement = connection.prepareStatement("SELECT * FROM boisson_alcolise WHERE nom =?");
+        preparedStatement = connection.prepareStatement("SELECT * FROM boisson_alcolise WHERE nom = ?");
         preparedStatement.setString(1,name);
 
         ResultSet resultSet = preparedStatement.executeQuery();
@@ -100,8 +100,19 @@ public class DB implements IDBAccess {
     }
 
     @Override
-    public ResultSet addComment(String drinkName, String comment, int note) {
-        return null;
+    public void addComment(int note, String comment, Utilisateur user, int boisson) throws SQLException {
+        preparedStatement = connection.prepareStatement("INSERT INTO commentaire (nom, type, quantitestock, prixvente, prixachat) VALUES (?,?,?,?);");
+        preparedStatement.setInt(1,note);
+        preparedStatement.setString(2,comment);
+        preparedStatement.setString(3,user.getPseudo());
+        preparedStatement.setInt(4,boisson);
+
+        try{
+            preparedStatement.executeUpdate();
+        }
+        catch (SQLException e){
+            throw e;
+        }
     }
 
     @Override
