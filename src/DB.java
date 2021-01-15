@@ -55,6 +55,8 @@ public class DB implements IDBAccess{
         return null;
     }
 
+
+     // non
     @Override
     public ResultSet getDrink(String name) throws SQLException {
         preparedStatement = connection.prepareStatement("SELECT * FROM boisson_alcolise WHERE nom =?");
