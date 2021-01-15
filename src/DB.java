@@ -48,11 +48,18 @@ public class DB implements IDBAccess{
     @Override
     public ResultSet login(String username, String password) {
         return null;
+
     }
 
     @Override
-    public ResultSet getLeaderboard() {
-        return null;
+    public ResultSet getLeaderboard() throws SQLException{
+        preparedStatement = connection.prepareStatement("SELECT * FROM classement_biere");
+        try{
+           return preparedStatement.executeQuery();
+        }
+        catch (SQLException e){
+            throw e;
+        }
     }
 
     @Override

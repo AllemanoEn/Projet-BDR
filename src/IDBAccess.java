@@ -9,7 +9,7 @@ public interface IDBAccess {
 
     ResultSet login(String username, String password);
 
-    ResultSet getLeaderboard();
+    ResultSet getLeaderboard() throws SQLException;
 
     void addDrink(String name, int type, int quantite, int prixvente, int prixachat) throws SQLException;
 
