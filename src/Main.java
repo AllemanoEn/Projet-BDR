@@ -2,6 +2,7 @@ import db.DB;
 import db.IDBAccess;
 import db.Utilisateur;
 import gui.GUI;
+import java.sql.SQLException;
 
 import java.sql.SQLException;
 

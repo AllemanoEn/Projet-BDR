@@ -1,8 +1,7 @@
 package db;
 public class Utilisateur {
 
-    private String pseudo;
-    private String password;
+    String pseudo;
     boolean admin;
 
     public Utilisateur(String pseudo, String password ,boolean admin){
@@ -11,12 +10,9 @@ public class Utilisateur {
         this.admin = admin;
     }
 
-    public String getPseudo(){
+    public String getPseudo() {
         return pseudo;
     }
 
-    public String getPassword(){
-        return password;
-    }
 
 }
