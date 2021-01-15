@@ -7,12 +7,12 @@ public class GUI {
         
         IDBAccess oui = new DB();
         oui.startDB();
-        oui.createUser("b","b","b",1);
+        //oui.createUser("a","a","a","2");
 
         oui.getOrientationLeaderboard();
 
         System.out.println("\n-----");
-        oui.getDrink("BFM");
+        oui.getDrink("Boxer");
 
         /*
         JFrame frame = new JFrame("Chat Frame");
