@@ -1,14 +1,15 @@
 import java.sql.*;
 
 public class DB implements IDBAccess{
-    PreparedStatement preparedStatement;
-    Connection connection;
 
+    Connection connection;
+    Statement statement;
 
     @Override
     public void startDB() throws SQLException {
 
         this.connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/bdr?currentSchema=projet", "bdr", "bdr");
+        this.statement= connection.createStatement();
 
        /*
         ResultSet resultSet = statement.executeQuery("SELECT * FROM pagila.actor");
@@ -26,16 +27,9 @@ public class DB implements IDBAccess{
     }
 
     @Override
-    public ResultSet createUser(String username, String password, String email, int orientation) throws SQLException {
+    public ResultSet createUser(String username, String password, String email, String orientation) throws SQLException {
 
-        preparedStatement = connection.prepareStatement("INSERT INTO utilisateur VALUES (?,?,?,?,?);");
-        preparedStatement.setString(1,username);
-        preparedStatement.setString(2,password);
-        preparedStatement.setString(3,email);
-        preparedStatement.setInt(4,orientation);
-        preparedStatement.setBoolean(5,false);
-
-        preparedStatement.executeUpdate();
+        statement.executeUpdate("INSERT INTO utilisateur VALUES ('"+username+"', '"+password+"','"+email+"','"+orientation+"',FALSE); ");
 
         return null;
     }
@@ -57,10 +51,7 @@ public class DB implements IDBAccess{
 
     @Override
     public ResultSet getDrink(String name) throws SQLException {
-        preparedStatement = connection.prepareStatement("SELECT * FROM boisson_alcolise WHERE nom =?");
-        preparedStatement.setString(1,name);
-
-        ResultSet resultSet = preparedStatement.executeQuery();
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM boisson_alcolise WHERE nom = '"+ name +"'");
         ResultSetMetaData rsmd = resultSet.getMetaData();
         int columnsNumber = rsmd.getColumnCount();
         while (resultSet.next()) {
@@ -81,8 +72,7 @@ public class DB implements IDBAccess{
     @Override
     public ResultSet getOrientationLeaderboard() throws SQLException {
 
-        preparedStatement = connection.prepareStatement("SELECT * FROM classement_orientation ");
-        ResultSet resultSet = preparedStatement.executeQuery();
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM classement_orientation ");
         ResultSetMetaData rsmd = resultSet.getMetaData();
         int columnsNumber = rsmd.getColumnCount();
         while (resultSet.next()) {
