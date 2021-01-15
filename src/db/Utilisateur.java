@@ -5,8 +5,9 @@ public class Utilisateur {
     private String password;
     boolean admin;
 
-    Utilisateur (String pseudo, boolean admin){
+    public Utilisateur(String pseudo, String password, boolean admin){
         this.pseudo = pseudo;
+        this.password = password;
         this.admin = admin;
     }
 
