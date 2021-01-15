@@ -1,7 +1,6 @@
 public class Utilisateur {
 
-    private String pseudo;
-    private String password;
+    String pseudo;
     boolean admin;
 
     Utilisateur (String pseudo, boolean admin){
@@ -9,12 +8,9 @@ public class Utilisateur {
         this.admin = admin;
     }
 
-    public String getPseudo(){
+    public String getPseudo() {
         return pseudo;
     }
 
-    public String getPassword(){
-        return password;
-    }
 
 }
