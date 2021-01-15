@@ -1,16 +1,16 @@
-import gui.GUI;
+import gui.MainView;
 import db.DB;
 import db.IDBAccess;
 import db.Utilisateur;
-import gui.GUI;
+
 
 import java.sql.SQLException;
 
 public class Main {
     public static void main(String ... args) throws SQLException {
-        GUI gui = new GUI();
+        MainView mainView = new MainView();
 
-        gui.show();
+        mainView.show();
 
         IDBAccess oui = new DB();
 
