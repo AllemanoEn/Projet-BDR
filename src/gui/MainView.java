@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import db.*;
 
-public class GUI {
+public class MainView {
     IDBAccess idbAccess;
 
     public void show() {
@@ -90,6 +90,8 @@ public class GUI {
                 
                 //lb.add(new J)
                 //list.add(String.format("%-40s:%2s", resultSet.getString(1), resultSet.getString(2)));
+
+
             }
 
         } catch (SQLException e) {
@@ -110,7 +112,10 @@ public class GUI {
             ResultSetMetaData rsmd = resultSet.getMetaData();
             int columnsNumber = rsmd.getColumnCount();
             while (resultSet.next()) {
-                list.add(String.format("%-40s:%2s", resultSet.getString(1), resultSet.getString(2)));
+
+                String str = String.format("%-40s:%2s", resultSet.getString(1), resultSet.getString(2));
+                System.out.println(str);
+                list.add(str);
             }
 
         } catch (SQLException e) {
