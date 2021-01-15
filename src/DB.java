@@ -1,64 +1,96 @@
 import java.sql.*;
 
 public class DB implements IDBAccess{
-
+    PreparedStatement preparedStatement;
     Connection connection;
-    Statement statement;
+
 
     @Override
     public void startDB() throws SQLException {
 
         this.connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/bdr?currentSchema=projet", "bdr", "bdr");
-        this.statement= connection.createStatement();
+    }
 
-       /*
-        ResultSet resultSet = statement.executeQuery("SELECT * FROM pagila.actor");
-        ResultSetMetaData rsmd = resultSet.getMetaData();
-        int columnsNumber = rsmd.getColumnCount();
-        while (resultSet.next()) {
-            for (int i = 1; i <= columnsNumber; i++) {
-                if (i > 1) System.out.print(", \n ");
-                String columnValue = resultSet.getString(i);
-                System.out.print(columnValue + " " + rsmd.getColumnName(i));
-            }
+    @Override
+    public boolean createUser(String username, String password, String email, int orientation) throws SQLException {
+
+        preparedStatement = connection.prepareStatement("INSERT INTO utilisateur VALUES (?,?,?,?,?);");
+        preparedStatement.setString(1,username);
+        preparedStatement.setString(2,password);
+        preparedStatement.setString(3,email);
+        preparedStatement.setInt(4,orientation);
+        preparedStatement.setBoolean(5,false);
+
+        try{
+            preparedStatement.executeUpdate();
+            return true;
         }
-
-        */
+        catch (SQLException e){
+            System.out.print(e);
+            return false;
+        }
     }
 
     @Override
-    public ResultSet createUser(String username, String password, String email, String orientation) throws SQLException {
+    public boolean login(String username, String password) throws SQLException {
 
-        statement.executeUpdate("INSERT INTO utilisateur VALUES ('"+username+"', '"+password+"','"+email+"','"+orientation+"',FALSE); ");
-
-        return null;
+        preparedStatement = connection.prepareStatement("SELECT count(pseudo) FROM utilisateur WHERE pseudo = ? AND password = ?;");
+        preparedStatement.setString(1,username);
+        preparedStatement.setString(2,password);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        boolean exist = false;
+        while (resultSet.next()) {
+             exist = resultSet.getBoolean(1);
+        }
+        if (exist) {
+            return true;
+        }
+        return false;
     }
 
     @Override
-    public ResultSet login(String username, String password) {
-        return null;
+    public ResultSet getLeaderboard() throws SQLException{
+        preparedStatement = connection.prepareStatement("SELECT * FROM classement_biere");
+        try{
+           return preparedStatement.executeQuery();
+        }
+        catch (SQLException e){
+            throw e;
+        }
     }
 
     @Override
-    public ResultSet getLeaderboard() {
-        return null;
+    public void addDrink(String name, int type, int quantite, int prixvente, int prixachat) throws SQLException{
+
+        preparedStatement = connection.prepareStatement("INSERT INTO boissons (nom, type, quantitestock, prixvente, prixachat) VALUES (?,?,?,?,?);");
+        preparedStatement.setString(1,name);
+        preparedStatement.setInt(2,type);
+        preparedStatement.setInt(3,quantite);
+        preparedStatement.setInt(4,prixvente);
+        preparedStatement.setInt(5,prixachat);
+
+        try{
+            preparedStatement.executeUpdate();
+        }
+        catch (SQLException e){
+            throw e;
+        }
     }
 
-    @Override
-    public ResultSet addDrink(String name, String type) {
-        return null;
-    }
 
+     // non
     @Override
     public ResultSet getDrink(String name) throws SQLException {
-        ResultSet resultSet = statement.executeQuery("SELECT * FROM boisson_alcolise WHERE nom = '"+ name +"'");
+        preparedStatement = connection.prepareStatement("SELECT * FROM boisson_alcolise WHERE nom =?");
+        preparedStatement.setString(1,name);
+
+        ResultSet resultSet = preparedStatement.executeQuery();
         ResultSetMetaData rsmd = resultSet.getMetaData();
         int columnsNumber = rsmd.getColumnCount();
         while (resultSet.next()) {
             for (int i = 1; i <= columnsNumber; i++) {
-                if (i > 1) System.out.print(",\n ");
                 String columnValue = resultSet.getString(i);
-                System.out.print(columnValue + " " + rsmd.getColumnName(i));
+                System.out.print(columnValue + " " + rsmd.getColumnName(i) +",\n");
             }
         }
         return null;
@@ -72,45 +104,20 @@ public class DB implements IDBAccess{
     @Override
     public ResultSet getOrientationLeaderboard() throws SQLException {
 
-        ResultSet resultSet = statement.executeQuery("SELECT * FROM classement_orientation ");
+        preparedStatement = connection.prepareStatement("SELECT * FROM classement_orientation ");
+        ResultSet resultSet = preparedStatement.executeQuery();
         ResultSetMetaData rsmd = resultSet.getMetaData();
         int columnsNumber = rsmd.getColumnCount();
         while (resultSet.next()) {
             for (int i = 1; i <= columnsNumber; i++) {
-                if (i > 1) System.out.print(",\n ");
                 String columnValue = resultSet.getString(i);
-                System.out.print(columnValue + " " + rsmd.getColumnName(i));
+                System.out.print(columnValue + " " + rsmd.getColumnName(i) +",\n");
             }
         }
+
+
         return null;
     }
-
-    /*public static void main(String ... args) throws SQLException {
-
-        Connection connection = DriverManager.getConnection("jdbc:postgresql://projetbdr2020.postgres.database.azure.com/", "bdr@projetbdr2020", "root-2020");
-
-        System.out.println("Java JDBC PostgreSQL Example");
-        // When this class first attempts to establish a connection, it automatically loads any JDBC 4.0 drivers found within
-        // the class path. Note that your application must manually load any JDBC drivers prior to version 4.0.
-//          Class.forName("org.postgresql.Driver");
-
-        System.out.println("Connected to PostgreSQL database!");
-        Statement statement = connection.createStatement();
-        System.out.println("Reading car records...");
-
-
-        ResultSet resultSet = statement.executeQuery("SELECT * FROM pagila.actor");
-        ResultSetMetaData rsmd = resultSet.getMetaData();
-        int columnsNumber = rsmd.getColumnCount();
-        while (resultSet.next()) {
-            for (int i = 1; i <= columnsNumber; i++) {
-                if (i > 1) System.out.print(", \n ");
-                String columnValue = resultSet.getString(i);
-                System.out.print(columnValue + " " + rsmd.getColumnName(i));
-            }
-        }
-
-    }*/
 
 }
 
