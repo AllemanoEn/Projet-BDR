@@ -56,8 +56,21 @@ public class DB implements IDBAccess{
     }
 
     @Override
-    public ResultSet addDrink(String name, String type) {
-        return null;
+    public void addDrink(String name, int type, int quantite, int prixvente, int prixachat) throws SQLException{
+
+        preparedStatement = connection.prepareStatement("INSERT INTO boissons (nom, type, quantitestock, prixvente, prixachat) VALUES (?,?,?,?,?);");
+        preparedStatement.setString(1,name);
+        preparedStatement.setInt(2,type);
+        preparedStatement.setInt(3,quantite);
+        preparedStatement.setInt(4,prixvente);
+        preparedStatement.setInt(5,prixachat);
+
+        try{
+            preparedStatement.executeUpdate();
+        }
+        catch (SQLException e){
+            throw e;
+        }
     }
 
 

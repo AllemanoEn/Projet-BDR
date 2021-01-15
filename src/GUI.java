@@ -14,6 +14,12 @@ public class GUI {
         System.out.println("\n-----");
         oui.getDrink("Boxer");
 
+        try{
+            oui.addDrink("pipi",1,300,10,5);
+        } catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
         /*
         JFrame frame = new JFrame("Chat Frame");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
