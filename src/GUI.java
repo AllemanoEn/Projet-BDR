@@ -1,7 +1,20 @@
 import javax.swing.*;
 import java.awt.*;
+import java.sql.SQLException;
+
 public class GUI {
-    public static void main(String ... args){
+    public static void main(String ... args) throws SQLException {
+        
+        IDBAccess oui = new DB();
+        oui.startDB();
+        //oui.createUser("a","a","a","2");
+
+        oui.getOrientationLeaderboard();
+
+        System.out.println("\n-----");
+        oui.getDrink("Boxer");
+
+        /*
         JFrame frame = new JFrame("Chat Frame");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(400, 400);
@@ -36,5 +49,8 @@ public class GUI {
         frame.getContentPane().add(BorderLayout.NORTH, mb);
         frame.getContentPane().add(BorderLayout.CENTER, ta);
         frame.setVisible(true);
+        
+     
+         */
     }
 }
