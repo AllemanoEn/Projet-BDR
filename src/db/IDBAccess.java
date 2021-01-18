@@ -6,8 +6,6 @@ import java.sql.*;
 
 public interface IDBAccess {
 
-    public Utilisateur utilisateur = null;
-
     void startDB() throws SQLException;
 
     boolean createUser(String username, String password, String email, int orientation) throws SQLException;
@@ -24,5 +22,10 @@ public interface IDBAccess {
 
     ResultSet getOrientationLeaderboard() throws SQLException;
 
+    void setUser(Utilisateur u);
+
+    boolean isConnected();
+
+    boolean isConnectedAsAdmin();
 
 }

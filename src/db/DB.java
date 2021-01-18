@@ -1,13 +1,23 @@
 package db;
 
-
 import java.sql.*;
-
 
 public class DB implements IDBAccess {
     PreparedStatement preparedStatement;
     Connection connection;
+    Utilisateur utilisateurCourant = null;
 
+    public void setUser(Utilisateur u){
+        utilisateurCourant = u;
+    }
+
+    public boolean isConnected(){
+        return utilisateurCourant == null;
+    }
+
+    public boolean isConnectedAsAdmin(){
+        return utilisateurCourant == null && utilisateurCourant.isAdmin();
+    }
 
     @Override
     public void startDB() throws SQLException {
@@ -38,9 +48,10 @@ public class DB implements IDBAccess {
     @Override
     public boolean login(Utilisateur utilisateur) throws SQLException {
 
-        preparedStatement = connection.prepareStatement("SELECT count(pseudo) FROM utilisateur WHERE pseudo = ? AND password = ?;");
+        preparedStatement = connection.prepareStatement("SELECT count(pseudo) FROM utilisateur WHERE pseudo = ? AND password = ? AND admin = ?;");
         preparedStatement.setString(1,utilisateur.getPseudo());
         preparedStatement.setString(2,utilisateur.getPassword());
+        preparedStatement.setBoolean(3,utilisateur.isAdmin());
         ResultSet resultSet = preparedStatement.executeQuery();
         boolean exist = false;
         while (resultSet.next()) {
@@ -130,7 +141,6 @@ public class DB implements IDBAccess {
         }
         return null;
     }
-
 }
 
 
