@@ -29,6 +29,7 @@ public class MainView extends JFrame {
     private JScrollPane event_scroll;
     private JScrollPane orientation_scroll;
     private JButton ajouterButton;
+    private ajouterPopUp displayAddPopUp;
 
     public MainView(IDBAccess DBprojet) throws SQLException {
         setSize(800, 600);
@@ -49,11 +50,11 @@ public class MainView extends JFrame {
                         label_status.setForeground( new Color(0,255,0));
                         label_status.setText(u.getPseudo() + " est connecté !");
                         DBprojet.setUser(u);
-                        if (u.isAdmin()){
-
+                        /*if (u.isAdmin()){
+                            ajouterButton.setEnabled(true);
                         }else {
-
-                        }
+                            ajouterButton.setEnabled(false);
+                        }*/
                     }
                     else {
                         label_status.setForeground( new Color(255,0,0));
@@ -62,6 +63,15 @@ public class MainView extends JFrame {
                 } catch (SQLException throwables) {
                     throwables.printStackTrace();
                 }
+            }
+        });
+        ajouterButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(true);
+
+                JFrame lal = new JFrame();
+                //lal.getContentPane().add(new ajouterPopUp());
             }
         });
     }
