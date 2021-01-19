@@ -29,7 +29,7 @@ public class MainView extends JFrame {
     private JScrollPane event_scroll;
     private JScrollPane orientation_scroll;
     private JButton ajouterButton;
-    private ajouterPopUp displayAddPopUp;
+    private AjouterPopUp displayAddPopUp;
 
     public MainView(IDBAccess DBprojet) throws SQLException {
         setSize(800, 600);
@@ -68,10 +68,11 @@ public class MainView extends JFrame {
         ajouterButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                setVisible(true);
+                setVisible(false);
 
-                JFrame lal = new JFrame();
-                //lal.getContentPane().add(new ajouterPopUp());
+                AjouterPopUp ajouterPopUp = new AjouterPopUp(MainView.this);
+
+
             }
         });
     }
