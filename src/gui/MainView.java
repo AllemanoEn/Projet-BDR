@@ -19,6 +19,11 @@ public class MainView extends JFrame {
     private JTextField utilisateurTextField;
     private JLabel label_status;
     private JCheckBox adminCheckBox;
+    private JTabbedPane tabbedPane1;
+    private JPanel soft_tab;
+    private JPanel biere_tab;
+    private JPanel event_tab;
+    private JPanel orientation_tab;
 
     public MainView(IDBAccess DBprojet) throws SQLException {
         setSize(800, 600);
