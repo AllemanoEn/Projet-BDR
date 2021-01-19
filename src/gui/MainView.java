@@ -7,6 +7,8 @@ import java.awt.*;
 import java.sql.SQLException;
 
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -29,6 +31,9 @@ public class MainView extends JFrame {
     private JScrollPane event_scroll;
     private JScrollPane orientation_scroll;
     private JButton ajouterButton;
+    private JList beerLB;
+    private JPanel beerInfo;
+    private JLabel beerName;
     private AjouterPopUp displayAddPopUp;
 
     public MainView(IDBAccess DBprojet) throws SQLException {
@@ -73,6 +78,24 @@ public class MainView extends JFrame {
                 AjouterPopUp ajouterPopUp = new AjouterPopUp(MainView.this);
 
 
+            }
+        });
+
+        beerLB.setListData(new String[]{"BFM", "Cuvee"});
+
+        beerLB.addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent listSelectionEvent) {
+                if (!listSelectionEvent.getValueIsAdjusting()) {
+
+                    if (beerLB.getSelectedIndex() == -1) {
+
+
+                    } else {
+                        // show beer info
+                        beerName.setText((String) beerLB.getSelectedValue());
+                    }
+                }
             }
         });
     }
