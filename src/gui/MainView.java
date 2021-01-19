@@ -12,8 +12,8 @@ import java.awt.event.ActionListener;
 
 public class MainView extends JFrame {
     private JPanel mainPanel;
-    private JPanel lbPanel;
-    private JPanel drinkInfoPanel;
+    private JPanel selectionPanel;
+    private JPanel InfoPanel;
     private JButton seConnecterButton;
     private JPasswordField mdpPasswordField;
     private JTextField utilisateurTextField;
@@ -24,6 +24,11 @@ public class MainView extends JFrame {
     private JPanel biere_tab;
     private JPanel event_tab;
     private JPanel orientation_tab;
+    private JScrollPane soft_scroll;
+    private JScrollPane biere_scroll;
+    private JScrollPane event_scroll;
+    private JScrollPane orientation_scroll;
+    private JButton ajouterButton;
 
     public MainView(IDBAccess DBprojet) throws SQLException {
         setSize(800, 600);
@@ -44,6 +49,11 @@ public class MainView extends JFrame {
                         label_status.setForeground( new Color(0,255,0));
                         label_status.setText(u.getPseudo() + " est connecté !");
                         DBprojet.setUser(u);
+                        if (u.isAdmin()){
+
+                        }else {
+
+                        }
                     }
                     else {
                         label_status.setForeground( new Color(255,0,0));
