@@ -404,3 +404,24 @@ AFTER INSERT
 ON boisson_transaction
 FOR EACH ROW
 EXECUTE FUNCTION soustraction_stock ();
+
+-- Fonction --------------------------------------------------------
+-- |
+-- V
+-- Permet de lister les tables libres a une date donnée
+CREATE FUNCTION table_libre (dateparam DATE)
+RETURNS TABLE (numero int)
+AS
+$$
+SELECT numero
+FROM "table"
+GROUP BY numero
+HAVING numero NOT IN (
+    SELECT numero
+FROM "table" t
+inner join table_event te on t.numero = te.numerotable
+inner join evenement e on te.numeroevent= e.id
+where date = dateparam
+    );
+$$
+language sql;

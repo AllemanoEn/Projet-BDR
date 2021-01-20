@@ -8,13 +8,13 @@ import java.sql.Timestamp;
 
 
 public class EventPanel extends JFrame{
-    private JButton buttonmaj;
-    private JButton buttonsupprimer;
     private JButton buttonajouter;
     private JPanel panel1main;
     private JTextField nom;
     private JTextField date;
-    private JTextField utilisateur;
+    private JTabbedPane tabbedPane1;
+    private JList listBoisson;
+    private JTextField textField1;
 
     public EventPanel(MainView mainView) {
         super("Event Panel");
@@ -44,6 +44,14 @@ public class EventPanel extends JFrame{
 
             }
         });
+
+        try {
+            listBoisson.setListData(mainView.idbAccess.getSoftDrinks());
+            //listBoisson.setListData(mainView.idbAccess.getBeers());
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
     }
 
 }
