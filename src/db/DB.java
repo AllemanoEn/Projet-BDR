@@ -183,6 +183,65 @@ public class DB implements IDBAccess {
         }
 
     }
+
+    @Override
+    public boolean createEvent(String nom, String date, Utilisateur utilisateur,Boisson boisson, int quantite) throws SQLException {
+
+        preparedStatement = connection.prepareStatement("INSERT INTO evenement(nom, date, organisateur) VALUES (?,?,?);");
+
+        preparedStatement.setString(1,nom);
+        preparedStatement.setString(2,date);
+        preparedStatement.setString(3,utilisateur.getPseudo());
+
+        try{
+            if (preparedStatement.executeUpdate() == 1){
+                preparedStatement = connection.prepareStatement("INSERT INTO reservation VALUES (?,?,?);");
+                preparedStatement.setInt(1,getBoisson(boisson.getName()));
+                preparedStatement.setInt(2,getEvent(nom));
+                preparedStatement.setInt(3,quantite);
+
+                return true;
+            }
+
+        }
+
+        catch (SQLException e){
+            throw e;
+        }
+        return false;
+    }
+
+    @Override
+    public int getEvent(String name) throws SQLException {
+        preparedStatement = connection.prepareStatement("SELECT id FROM evenement WHERE nom = ?");
+        preparedStatement.setString(1,name);
+
+        try{
+            ResultSet resultSet = preparedStatement.executeQuery();
+            return resultSet.getInt(1);
+        }
+
+        catch (SQLException e){
+            throw e;
+        }
+
+    }
+    @Override
+    public int getBoisson(String name) throws SQLException {
+        preparedStatement = connection.prepareStatement("SELECT id FROM boissons WHERE nom = ?");
+        preparedStatement.setString(1,name);
+
+        try{
+            ResultSet resultSet = preparedStatement.executeQuery();
+            return resultSet.getInt(1);
+        }
+
+        catch (SQLException e){
+            throw e;
+        }
+
+    }
+
 }
 
 
