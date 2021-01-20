@@ -23,10 +23,4 @@ public class AdminPanel extends JFrame {
             }
         });
     }
-
-    private void createUIComponents() {
-        // TODO: place custom component creation code here
-        JLabel jLabel = new JLabel();
-        jLabel.setText("aa");
-    }
 }

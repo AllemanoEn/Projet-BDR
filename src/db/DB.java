@@ -165,19 +165,18 @@ public class DB implements IDBAccess {
     public String[] getOrientationLeaderboard() throws SQLException {
 
         preparedStatement = connection.prepareStatement("SELECT * FROM classement_orientation ");
-        String[] s = new String[0];
-        int i = 0;
+
+        ArrayList<String> arrayList = new ArrayList<>();
 
 
         try{
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while(resultSet.next()) {
-                s[i] = resultSet.getString(1) + " " + resultSet.getString(2);
-                i++;
+                arrayList.add(resultSet.getString(1) + " " + resultSet.getString(2));
             }
 
-            return s;
+            return arrayList.toArray(new String[0]);
         }
         catch (SQLException e){
             throw e;
