@@ -65,7 +65,7 @@ public class DB implements IDBAccess {
     }
 
     @Override
-    public Biere[] getDrinks() throws SQLException{
+    public Biere[] getBeers() throws SQLException{
         preparedStatement = connection.prepareStatement("SELECT * FROM boisson_alcolise");
         ArrayList<Biere> arrayList = new ArrayList<>();
 
