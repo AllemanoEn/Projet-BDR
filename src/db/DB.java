@@ -162,19 +162,27 @@ public class DB implements IDBAccess {
     }
 
     @Override
-    public ResultSet getOrientationLeaderboard() throws SQLException {
+    public String[] getOrientationLeaderboard() throws SQLException {
 
         preparedStatement = connection.prepareStatement("SELECT * FROM classement_orientation ");
-        ResultSet resultSet = preparedStatement.executeQuery();
-        ResultSetMetaData rsmd = resultSet.getMetaData();
-        int columnsNumber = rsmd.getColumnCount();
-        while (resultSet.next()) {
-            for (int i = 1; i <= columnsNumber; i++) {
-                String columnValue = resultSet.getString(i);
-                System.out.print(columnValue + " " + rsmd.getColumnName(i) +",\n");
+        String[] s = new String[0];
+        int i = 0;
+
+
+        try{
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while(resultSet.next()) {
+                s[i] = resultSet.getString(1) + " " + resultSet.getString(2);
+                i++;
             }
+
+            return s;
         }
-        return null;
+        catch (SQLException e){
+            throw e;
+        }
+
     }
 }
 

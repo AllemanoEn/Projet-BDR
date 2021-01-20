@@ -22,7 +22,7 @@ public interface IDBAccess {
 
     void addComment(int note, String commentBy,Utilisateur user, int boisson) throws SQLException;
 
-    ResultSet getOrientationLeaderboard() throws SQLException;
+    String[] getOrientationLeaderboard() throws SQLException;
 
     void setUser(Utilisateur u);
 
