@@ -195,9 +195,6 @@ public class DB implements IDBAccess {
 
         try{
             if (preparedStatement.executeUpdate() == 1){
-                int id = 0;
-                id = getEvent(nom);
-
                 preparedStatement = connection.prepareStatement("INSERT INTO reservation VALUES (?,?,?);");
                 preparedStatement.setInt(1,getBoisson(boisson.getName()));
                 preparedStatement.setInt(2,getEvent(nom));
