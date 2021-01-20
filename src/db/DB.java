@@ -129,20 +129,28 @@ public class DB implements IDBAccess {
 
 
     @Override
-    public Biere getDrink(String name) throws SQLException {
-        preparedStatement = connection.prepareStatement("SELECT * FROM boisson_alcolise WHERE nom = ?");
-        preparedStatement.setString(1,name);
+    public Boisson getDrink(String name) throws SQLException {
 
-        ResultSet resultSet = preparedStatement.executeQuery();
-        ResultSetMetaData rsmd = resultSet.getMetaData();
-        int columnsNumber = rsmd.getColumnCount();
-        while (resultSet.next()) {
-            for (int i = 1; i <= columnsNumber; i++) {
-                String columnValue = resultSet.getString(i);
-                System.out.print(columnValue + " " + rsmd.getColumnName(i) +",\n");
+        Boisson boisson = null;
+        Boisson[] boissons = getSoftDrinks();
+
+        for(Boisson boisson1 : boissons) {
+            if(boisson1.getName().equals(name)){
+                boisson = boisson1;
             }
         }
-        return null;
+
+        if(boisson == null) {
+            Biere[] bieres = getBeers();
+
+            for(Biere biere1 : bieres) {
+                if(biere1.getName().equals(name)){
+                    boisson = biere1;
+                }
+            }
+        }
+
+        return boisson;
     }
 
     @Override

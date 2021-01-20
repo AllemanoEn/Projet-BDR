@@ -9,6 +9,7 @@ public class AdminPanel extends JFrame {
     private JPanel addSoftTab;
     private JPanel addEventTab;
     private JPanel bierePanel;
+    private JList biereList;
 
     public AdminPanel(MainView mainView) {
         super("Admin Panel");
