@@ -173,7 +173,7 @@ public class DB implements IDBAccess {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while(resultSet.next()) {
-                arrayList.add(resultSet.getString(1) + " " + resultSet.getString(2));
+                arrayList.add(resultSet.getString(1) + "  :  " + resultSet.getString(2));
             }
 
             return arrayList.toArray(new String[0]);
