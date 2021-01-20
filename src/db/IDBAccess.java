@@ -23,6 +23,12 @@ public interface IDBAccess {
 
     String[] getOrientationLeaderboard() throws SQLException;
 
+    boolean createEvent(String nom, String date,Utilisateur utilisateur, Boisson boisson, int quantite) throws SQLException;
+
+    int getEvent(String name) throws SQLException;
+
+    int getBoisson(String name) throws SQLException;
+
     void setUser(Utilisateur u);
 
     boolean isConnected();

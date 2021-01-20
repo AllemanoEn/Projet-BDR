@@ -7,9 +7,21 @@ public class AdminPanel extends JFrame {
     private JPanel mainPanel;
     private JPanel addBiereTab;
     private JPanel addSoftTab;
-    private JPanel addEventTab;
-    private JPanel bierePanel;
-    private JList biereList;
+    private JTextField textField1Nom;
+    private JTextField textField2Pourcentage;
+    private JTextField textField3PrixAchat;
+    private JTextField textField4Quantite;
+    private JTextField textField5PrixVente;
+    private JButton supprimerButton;
+    private JButton mettreÀJourButton;
+    private JButton ajouterButton;
+    private JRadioButton estUnAlcoolRadioButton;
+    private JTextField textField6Contenance;
+    private JComboBox comboBox1Provenance;
+    private JComboBox comboBox2Style;
+    private JButton buttonajouter;
+    private JButton buttonmaj;
+    private JButton buttonsupprimer;
 
     public AdminPanel(MainView mainView) {
         super("Admin Panel");
