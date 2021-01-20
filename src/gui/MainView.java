@@ -41,7 +41,7 @@ public class MainView extends JFrame {
     private JLabel beerCountry;
     private JLabel Biere;
     private JLabel Note;
-    private AjouterPopUp displayAddPopUp;
+    private AdminPanel displayAddPopUp;
 
     private IDBAccess idbAccess;
 
@@ -53,7 +53,7 @@ public class MainView extends JFrame {
 
         idbAccess = DBprojet;
 
-        DBprojet.startDB();
+        idbAccess.startDB();
 
         seConnecterButton.addActionListener(new ActionListener() {
             @Override
@@ -62,10 +62,10 @@ public class MainView extends JFrame {
                 Utilisateur u = new Utilisateur(utilisateurTextField.getText(), mdpPasswordField.getText(),adminCheckBox.isSelected());
 
                 try {
-                    if(DBprojet.login(u)){
+                    if(idbAccess.login(u)){
                         label_status.setForeground( new Color(0,255,0));
                         label_status.setText(u.getPseudo() + " est connecté !");
-                        DBprojet.setUser(u);
+                        idbAccess.setUser(u);
                         /*if (u.isAdmin()){
                             ajouterButton.setEnabled(true);
                         }else {
@@ -87,14 +87,14 @@ public class MainView extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
 
-                AjouterPopUp ajouterPopUp = new AjouterPopUp(MainView.this);
+                AdminPanel ajouterPopUp = new AdminPanel(MainView.this);
 
 
             }
         });
 
         beerLB.setCellRenderer(new BiereListRenderer());
-        beerLB.setListData(idbAccess.getLeaderboard());
+        beerLB.setListData(idbAccess.getBeers());
 
         beerLB.addListSelectionListener(new ListSelectionListener() {
             @Override

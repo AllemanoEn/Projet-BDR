@@ -1,6 +1,5 @@
 import db.DB;
 import db.IDBAccess;
-import db.Utilisateur;
 
 import java.sql.SQLException;
 import gui.MainView;

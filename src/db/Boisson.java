@@ -4,6 +4,8 @@ public class Boisson {
 
     protected String name;
     protected int quantiteStock;
+    protected double prixVente;
+    protected double prixAchat;
 
     public String getName() {
         return name;
@@ -37,13 +39,15 @@ public class Boisson {
         this.prixAchat = prixAchat;
     }
 
-    protected double prixVente;
-    protected double prixAchat;
-
     public Boisson(String name, int quantiteStock, double prixVente, double prixAchat) {
         this.name = name;
         this.quantiteStock = quantiteStock;
         this.prixVente = prixVente;
         this.prixAchat = prixAchat;
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }
