@@ -81,6 +81,7 @@ public class MainView extends JFrame {
                 }
             }
         });
+
         ajouterButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -93,7 +94,6 @@ public class MainView extends JFrame {
         });
 
         beerLB.setCellRenderer(new BiereListRenderer());
-
         beerLB.setListData(idbAccess.getLeaderboard());
 
         beerLB.addListSelectionListener(new ListSelectionListener() {
@@ -102,7 +102,6 @@ public class MainView extends JFrame {
                 if (!listSelectionEvent.getValueIsAdjusting()) {
 
                     if (beerLB.getSelectedIndex() == -1) {
-
 
                     } else {
                         // show beer info
