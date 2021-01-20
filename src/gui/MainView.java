@@ -94,7 +94,7 @@ public class MainView extends JFrame {
 
         beerLB.setCellRenderer(new BiereListRenderer());
 
-        beerLB.setListData(idbAccess.getDrinks());
+        beerLB.setListData(idbAccess.getBeers());
 
         beerLB.addListSelectionListener(new ListSelectionListener() {
             @Override

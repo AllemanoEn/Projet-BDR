@@ -16,7 +16,7 @@ public interface IDBAccess {
 
     Boisson getDrink(String name) throws SQLException;
 
-    Biere[] getDrinks() throws SQLException;
+    Biere[] getBeers() throws SQLException;
 
     Boisson[] getSoftDrink(String name) throws SQLException;
 
