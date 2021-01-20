@@ -39,7 +39,9 @@
                     <children>
                       <component id="dc6fe" class="javax.swing.JList" binding="listSoft">
                         <constraints/>
-                        <properties/>
+                        <properties>
+                          <model/>
+                        </properties>
                       </component>
                     </children>
                   </scrollpane>
