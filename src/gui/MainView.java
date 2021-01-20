@@ -43,6 +43,7 @@ public class MainView extends JFrame {
     private JLabel Note;
     private JList listSoft;
     private JList listOrientation;
+    private JButton ajouterUnÉvénementButton;
     private AdminPanel displayAddPopUp;
 
     private IDBAccess idbAccess;
@@ -91,7 +92,6 @@ public class MainView extends JFrame {
 
                 AdminPanel ajouterPopUp = new AdminPanel(MainView.this);
 
-
             }
         });
 
@@ -119,6 +119,14 @@ public class MainView extends JFrame {
                         beerRegion.setText(biere.getRegion());
                     }
                 }
+            }
+        });
+        ajouterUnÉvénementButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+
+                EventPanel eventPanel = new EventPanel(MainView.this);
             }
         });
     }
