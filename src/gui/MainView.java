@@ -96,7 +96,7 @@ public class MainView extends JFrame {
         });
 
 
-        beerLB.setListData(genLeaderBoard());
+        //beerLB.setListData(genLeaderBoard());
 
         beerLB.addListSelectionListener(new ListSelectionListener() {
             @Override
@@ -108,30 +108,9 @@ public class MainView extends JFrame {
 
                     } else {
                         // show beer info
-                        beerName.setText((String) beerLB.getSelectedValue());
                     }
                 }
             }
         });
-    }
-
-    private String[] genLeaderBoard() {
-
-        ArrayList<String> arrayList = new ArrayList<>();
-        int i = 1;
-        try {
-            ResultSet resultSet = idbAccess.getLeaderboard();
-
-            while(resultSet.next()) {
-                String str = String.format("%2d) %-25s %.1f", i++, resultSet.getString(1), resultSet.getDouble(2));
-                System.out.println(str);
-                arrayList.add(str);
-            }
-
-        } catch (SQLException e) {
-
-        }
-
-        return arrayList.toArray(new String[0]);
     }
 }
