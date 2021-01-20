@@ -41,6 +41,8 @@ public class MainView extends JFrame {
     private JLabel beerCountry;
     private JLabel Biere;
     private JLabel Note;
+    private JList listSoft;
+    private JList listOrientation;
     private AdminPanel displayAddPopUp;
 
     private IDBAccess idbAccess;
@@ -92,6 +94,9 @@ public class MainView extends JFrame {
 
             }
         });
+
+        listSoft.setListData(idbAccess.getSoftDrinks());
+        listOrientation.setListData(idbAccess.getOrientationLeaderboard());
 
         beerLB.setCellRenderer(new BiereListRenderer());
         beerLB.setListData(idbAccess.getBeers());
