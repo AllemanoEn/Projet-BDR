@@ -313,14 +313,14 @@ insert into boisson_transaction (numeroBoisson,numeroTransaction,quantite)
 
 -- Toutes les boissons non alcoolisées
 CREATE VIEW boisson_non_alcolise AS
-    SELECT b.id, b.nom, t.nom AS type, quantitestock, prixvente, prixachat
+    SELECT b.nom, quantitestock, prixvente, prixachat
 FROM boissons b
     INNER JOIN type t on b.type = t.id
 WHERE t.nom = 'Soft';
 
 -- Toutes les boissons alcoolisées
 CREATE VIEW boisson_alcolise AS
-SELECT b.nom, b.prixvente,b.prixachat, contenance, notemoyenne, p.pays, p.region,p.brasserie, s.nom AS type
+SELECT b.nom, b.quantitestock, b.prixvente,b.prixachat, pourcentage, contenance, notemoyenne, p.pays, p.region,p.brasserie, s.nom AS type
 FROM alcool a
 INNER JOIN provenance p on p.id = a.provenance
 INNER JOIN boissons b on b.id = a.boisson

@@ -87,7 +87,7 @@ public class DB implements IDBAccess {
     }
 
     @Override
-    public Boisson[] getSoftDrink(String name) throws SQLException{
+    public Boisson[] getSoftDrinks() throws SQLException{
         preparedStatement = connection.prepareStatement("SELECT * FROM boisson_non_alcolise");
         ArrayList<Boisson> arrayList = new ArrayList<>();
         try{

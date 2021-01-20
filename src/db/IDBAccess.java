@@ -1,6 +1,5 @@
 package db;
 
-import javax.xml.transform.Result;
 import java.sql.*;
 
 
@@ -18,7 +17,7 @@ public interface IDBAccess {
 
     Biere[] getBeers() throws SQLException;
 
-    Boisson[] getSoftDrink(String name) throws SQLException;
+    Boisson[] getSoftDrinks() throws SQLException;
 
     void addComment(int note, String commentBy,Utilisateur user, int boisson) throws SQLException;
 
