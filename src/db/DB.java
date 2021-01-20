@@ -98,7 +98,7 @@ public class DB implements IDBAccess {
                         resultSet.getDouble(4)));
 
             }
-
+//test
             return arrayList.toArray(new Boisson[0]);
         }
         catch (SQLException e){
