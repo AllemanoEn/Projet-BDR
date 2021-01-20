@@ -65,7 +65,7 @@ public class DB implements IDBAccess {
     }
 
     @Override
-    public Biere[] getLeaderboard() throws SQLException{
+    public Biere[] getDrinks() throws SQLException{
         preparedStatement = connection.prepareStatement("SELECT * FROM boisson_alcolise");
         ArrayList<Biere> arrayList = new ArrayList<>();
 
@@ -85,6 +85,30 @@ public class DB implements IDBAccess {
             throw e;
         }
     }
+
+    @Override
+    public Boisson[] getSoftDrink(String name) throws SQLException{
+        preparedStatement = connection.prepareStatement("SELECT * FROM boisson_non_alcolise");
+        ArrayList<Biere> arrayList = new ArrayList<>();
+        try{
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while(resultSet.next()) {
+                arrayList.add(new Biere(resultSet.getString(1), resultSet.getInt(2), resultSet.getDouble(3),
+                        resultSet.getDouble(4), resultSet.getDouble(5), resultSet.getInt(6), resultSet.getDouble(7),
+                        resultSet.getString(8), resultSet.getString(9), resultSet.getString(10), resultSet.getString(11)));
+
+            }
+
+            return arrayList.toArray(new Biere[0]);
+        }
+        catch (SQLException e){
+            throw e;
+        }
+    }
+
+
+
 
     @Override
     public void addDrink(String name, int type, int quantite, int prixvente, int prixachat) throws SQLException{
