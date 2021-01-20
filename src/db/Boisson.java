@@ -2,11 +2,16 @@ package db;
 
 public class Boisson {
 
-    private String name;
+    protected String name;
 
-    private double prixVente;
-    private double prixAchat;
-    private int quantiteStock;
+    protected double prixVente;
+    protected double prixAchat;
+    protected int quantiteStock;
+
+
+    protected Boisson() {
+
+    }
 
     public Boisson(String name, double prixVente, double prixAchat, int quantiteStock) {
         this.name = name;

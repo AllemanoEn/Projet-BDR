@@ -21,6 +21,12 @@ public class Biere extends Boisson {
         this.typeBiere = typeBiere;
     }
 
+    public Biere(String name, double noteMoyenne) {
+        super();
+        this.name = name;
+        this.noteMoyenne = noteMoyenne;
+    }
+
     public double getContenance() {
         return contenance;
     }

@@ -1,6 +1,7 @@
 package db;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class DB implements IDBAccess {
     PreparedStatement preparedStatement;
@@ -64,10 +65,19 @@ public class DB implements IDBAccess {
     }
 
     @Override
-    public ResultSet getLeaderboard() throws SQLException{
+    public Biere[] getLeaderboard() throws SQLException{
         preparedStatement = connection.prepareStatement("SELECT * FROM classement_biere");
+        ArrayList<Biere> arrayList = new ArrayList<>();
+
         try{
-           return preparedStatement.executeQuery();
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while(resultSet.next()) {
+
+                arrayList.add(new Biere(resultSet.getString(1), resultSet.getDouble(2)));
+            }
+
+           return arrayList.toArray(new Biere[0]);
         }
         catch (SQLException e){
             throw e;
@@ -94,7 +104,7 @@ public class DB implements IDBAccess {
 
 
     @Override
-    public ResultSet getDrink(String name) throws SQLException {
+    public Biere getDrink(String name) throws SQLException {
         preparedStatement = connection.prepareStatement("SELECT * FROM boisson_alcolise WHERE nom = ?");
         preparedStatement.setString(1,name);
 

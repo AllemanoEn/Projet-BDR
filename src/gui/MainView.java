@@ -95,8 +95,9 @@ public class MainView extends JFrame {
             }
         });
 
+        beerLB.setCellRenderer(new BiereListRenderer());
 
-        //beerLB.setListData(genLeaderBoard());
+        beerLB.setListData(idbAccess.getLeaderboard());
 
         beerLB.addListSelectionListener(new ListSelectionListener() {
             @Override
