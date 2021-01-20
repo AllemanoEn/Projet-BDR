@@ -3,22 +3,7 @@ package db;
 public class Boisson {
 
     protected String name;
-
-    protected double prixVente;
-    protected double prixAchat;
     protected int quantiteStock;
-
-
-    protected Boisson() {
-
-    }
-
-    public Boisson(String name, double prixVente, double prixAchat, int quantiteStock) {
-        this.name = name;
-        this.prixVente = prixVente;
-        this.prixAchat = prixAchat;
-        this.quantiteStock = quantiteStock;
-    }
 
     public String getName() {
         return name;
@@ -26,6 +11,14 @@ public class Boisson {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getQuantiteStock() {
+        return quantiteStock;
+    }
+
+    public void setQuantiteStock(int quantiteStock) {
+        this.quantiteStock = quantiteStock;
     }
 
     public double getPrixVente() {
@@ -44,11 +37,13 @@ public class Boisson {
         this.prixAchat = prixAchat;
     }
 
-    public int getQuantiteStock() {
-        return quantiteStock;
-    }
+    protected double prixVente;
+    protected double prixAchat;
 
-    public void setQuantiteStock(int quantiteStock) {
+    public Boisson(String name, int quantiteStock, double prixVente, double prixAchat) {
+        this.name = name;
         this.quantiteStock = quantiteStock;
+        this.prixVente = prixVente;
+        this.prixAchat = prixAchat;
     }
 }

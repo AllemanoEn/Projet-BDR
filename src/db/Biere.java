@@ -2,29 +2,31 @@ package db;
 
 public class Biere extends Boisson {
 
-
+    private double pourcentage;
     private double contenance;
     private double noteMoyenne;
-    private String provenance;
+    private String pays;
     private String region;
     private String brasserie;
     private String typeBiere;
 
-    public Biere(String name, double prixVente, double prixAchat, int quantiteStock, double contenance,
-                 double noteMoyenne, String provenance, String region, String brasserie, String typeBiere) {
-        super(name, prixVente, prixAchat, quantiteStock);
+    public Biere(String name, int quantiteStock, double prixVente, double prixAchat, double pourcentage, double contenance, double noteMoyenne, String pays, String region, String brasserie, String typeBiere) {
+        super(name, quantiteStock, prixVente, prixAchat);
+        this.pourcentage = pourcentage;
         this.contenance = contenance;
         this.noteMoyenne = noteMoyenne;
-        this.provenance = provenance;
+        this.pays = pays;
         this.region = region;
         this.brasserie = brasserie;
         this.typeBiere = typeBiere;
     }
 
-    public Biere(String name, double noteMoyenne) {
-        super();
-        this.name = name;
-        this.noteMoyenne = noteMoyenne;
+    public double getPourcentage() {
+        return pourcentage;
+    }
+
+    public void setPourcentage(double pourcentage) {
+        this.pourcentage = pourcentage;
     }
 
     public double getContenance() {
@@ -43,12 +45,12 @@ public class Biere extends Boisson {
         this.noteMoyenne = noteMoyenne;
     }
 
-    public String getProvenance() {
-        return provenance;
+    public String getPays() {
+        return pays;
     }
 
-    public void setProvenance(String provenance) {
-        this.provenance = provenance;
+    public void setPays(String pays) {
+        this.pays = pays;
     }
 
     public String getRegion() {

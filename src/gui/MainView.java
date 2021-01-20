@@ -1,11 +1,10 @@
 package gui;
 
+import db.Biere;
 import db.IDBAccess;
 import db.Utilisateur;
 
 import java.awt.*;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 
 import javax.swing.*;
@@ -13,8 +12,6 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.LinkedList;
 
 public class MainView extends JFrame {
     private JPanel mainPanel;
@@ -109,6 +106,13 @@ public class MainView extends JFrame {
 
                     } else {
                         // show beer info
+                        Biere biere = (db.Biere)beerLB.getSelectedValue();
+
+                        beerName.setText(biere.getName());
+                        beerCountry.setText(biere.getPays());
+                        beerPercentage.setText("" + biere.getPourcentage());
+                        beerQuantity.setText("" + biere.getContenance());
+                        beerRegion.setText(biere.getRegion());
                     }
                 }
             }
