@@ -23,7 +23,7 @@ public interface IDBAccess {
 
     String[] getOrientationLeaderboard() throws SQLException;
 
-    boolean createEvent(String nom, String date,Utilisateur utilisateur, Boisson boisson, int quantite, int table) throws SQLException;
+    boolean createEvent(String nom, Timestamp date, Boisson boisson, int quantite, int table) throws SQLException;
 
     int getEvent(String name) throws SQLException;
 

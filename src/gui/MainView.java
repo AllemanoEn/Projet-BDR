@@ -46,7 +46,7 @@ public class MainView extends JFrame {
     private JButton ajouterUnÉvénementButton;
     private AdminPanel displayAddPopUp;
 
-    private IDBAccess idbAccess;
+    IDBAccess idbAccess;
 
     public MainView(IDBAccess DBprojet) throws SQLException {
         setSize(800, 600);

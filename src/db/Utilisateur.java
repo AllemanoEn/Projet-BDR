@@ -19,6 +19,7 @@ public class Utilisateur {
         return password;
     }
 
+
     public boolean isAdmin() {
         return admin;
     }

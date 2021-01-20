@@ -193,13 +193,13 @@ public class DB implements IDBAccess {
     }
 
     @Override
-    public boolean createEvent(String nom, String date, Utilisateur utilisateur,Boisson boisson, int quantite, int table) throws SQLException {
+    public boolean createEvent(String nom, Timestamp date, Boisson boisson, int quantite, int table) throws SQLException {
 
         preparedStatement = connection.prepareStatement("INSERT INTO evenement(nom, date, organisateur) VALUES (?,?,?);");
 
         preparedStatement.setString(1,nom);
-        preparedStatement.setString(2,date);
-        preparedStatement.setString(3,utilisateur.getPseudo());
+        preparedStatement.setTimestamp(2,date);
+        preparedStatement.setString(3,utilisateurCourant.getPseudo());
 
         try{ // TODO :  controler que l'utilisateur veuille réserver des boissons + tables
             if (preparedStatement.executeUpdate() == 1){
