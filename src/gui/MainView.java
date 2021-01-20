@@ -121,6 +121,7 @@ public class MainView extends JFrame {
                 }
             }
         });
+
         ajouterUnÉvénementButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

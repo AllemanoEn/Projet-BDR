@@ -28,6 +28,7 @@ public class EventPanel extends JFrame{
                 mainView.setVisible(true);
             }
         });
+
         buttonajouter.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -46,6 +47,7 @@ public class EventPanel extends JFrame{
         });
 
         try {
+
             listBoisson.setListData(mainView.idbAccess.getSoftDrinks());
             //listBoisson.setListData(mainView.idbAccess.getBeers());
         } catch (SQLException throwables) {
