@@ -99,7 +99,7 @@ public class DB implements IDBAccess {
 
             }
 
-            return arrayList.toArray(new Biere[0]);
+            return arrayList.toArray(new Boisson[0]);
         }
         catch (SQLException e){
             throw e;

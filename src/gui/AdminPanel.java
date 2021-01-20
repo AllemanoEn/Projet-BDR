@@ -2,7 +2,7 @@ package gui;
 
 import javax.swing.*;
 
-public class AjouterPopUp extends JFrame {
+public class AdminPanel extends JFrame {
     private JTabbedPane tabbedPane1;
     private JPanel panel1;
     private JPanel addBiereTab;
@@ -10,7 +10,7 @@ public class AjouterPopUp extends JFrame {
     private JPanel addSoftTab;
     private JPanel addEventTab;
 
-    public AjouterPopUp(MainView mainView) {
+    public AdminPanel(MainView mainView) {
         setSize(800, 600);
         setContentPane(panel1);
         setVisible(true);

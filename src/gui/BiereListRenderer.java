@@ -15,7 +15,6 @@ public class BiereListRenderer extends JLabel implements ListCellRenderer<Biere>
     public Component getListCellRendererComponent(JList<? extends Biere> jList, Biere biere,
                                                   int index, boolean isSelected, boolean cellHasFocus) {
 
-
         setText(String.format("%d) %-25s %.1f", index, biere.getName(), biere.getNoteMoyenne()));
 
         if (isSelected) {
