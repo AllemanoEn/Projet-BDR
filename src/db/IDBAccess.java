@@ -12,11 +12,11 @@ public interface IDBAccess {
 
     boolean login(Utilisateur utilisateur) throws SQLException;
 
-    ResultSet getLeaderboard() throws SQLException;
+    Biere[] getLeaderboard() throws SQLException;
 
     void addDrink(String name, int type, int quantite, int prixvente, int prixachat) throws SQLException;
 
-    ResultSet getDrink(String name) throws SQLException;
+    Boisson getDrink(String name) throws SQLException;
 
     void addComment(int note, String commentBy,Utilisateur user, int boisson) throws SQLException;
 
