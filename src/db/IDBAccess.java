@@ -19,6 +19,8 @@ public interface IDBAccess {
 
     Boisson[] getSoftDrinks() throws SQLException;
 
+    Integer[] getTables(Timestamp date) throws SQLException;
+
     void addComment(int note, String commentBy,Utilisateur user, int boisson) throws SQLException;
 
     String[] getOrientationLeaderboard() throws SQLException;

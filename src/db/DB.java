@@ -98,8 +98,25 @@ public class DB implements IDBAccess {
                         resultSet.getDouble(4)));
 
             }
-//test
             return arrayList.toArray(new Boisson[0]);
+        }
+        catch (SQLException e){
+            throw e;
+        }
+    }
+
+     public Integer[] getTables(Timestamp date) throws SQLException{
+        preparedStatement = connection.prepareStatement("SELECT * FROM table_libre(?)");
+         preparedStatement.setTimestamp(1,date);
+        ArrayList<Integer> arrayList = new ArrayList<>();
+        try{
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while(resultSet.next()) {
+                arrayList.add(resultSet.getInt(1));
+
+            }
+            return arrayList.toArray(new Integer[0]);
         }
         catch (SQLException e){
             throw e;
@@ -201,7 +218,7 @@ public class DB implements IDBAccess {
         preparedStatement.setTimestamp(2,date);
         preparedStatement.setString(3,utilisateurCourant.getPseudo());
 
-        try{ // TODO :  controler que l'utilisateur veuille réserver des boissons + tables
+        try{
             if (preparedStatement.executeUpdate() == 1){
 
                 if (boisson != null && quantite > 0 ){

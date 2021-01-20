@@ -1,10 +1,13 @@
 package gui;
 
+import db.Boisson;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+
 
 
 public class EventPanel extends JFrame{
@@ -15,12 +18,16 @@ public class EventPanel extends JFrame{
     private JTabbedPane tabbedPane1;
     private JList listBoisson;
     private JTextField textField1;
+    private JList listTable;
+    private JButton Verify;
+    Timestamp oui;
 
     public EventPanel(MainView mainView) {
         super("Event Panel");
         setSize(800, 600);
         setContentPane(panel1main);
         setVisible(true);
+
 
         addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
@@ -35,7 +42,7 @@ public class EventPanel extends JFrame{
                 String eventDate = date.getText();
                 String eventName = nom.getText();
 
-                Timestamp oui = Timestamp.valueOf(eventDate);
+                oui = Timestamp.valueOf(eventDate);
 
                 try {
                     mainView.idbAccess.createEvent(eventName,oui,null, 0, 0);
@@ -47,13 +54,36 @@ public class EventPanel extends JFrame{
         });
 
         try {
+            Boisson[] first = mainView.idbAccess.getSoftDrinks();
+            Boisson[] second = mainView.idbAccess.getBeers();
+            int i = first.length;
+            int j = second.length;
+            int datalength = i+ j;
+            Boisson[] data = new Boisson[datalength];
 
-            listBoisson.setListData(mainView.idbAccess.getSoftDrinks());
-            //listBoisson.setListData(mainView.idbAccess.getBeers());
+            System.arraycopy(first,0,data,0,i);
+            System.arraycopy(second,0,data,i,j);
+            listBoisson.setListData(data);
+
+
+            listTable.setListData(mainView.idbAccess.getTables(oui));
+
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
 
+        Verify.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String eventDate = date.getText();
+                oui = Timestamp.valueOf(eventDate);
+                try {
+                    listTable.setListData(mainView.idbAccess.getTables(oui));
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
+            }
+        });
     }
 
 }
