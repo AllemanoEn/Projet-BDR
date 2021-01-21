@@ -198,14 +198,14 @@ public class DB implements IDBAccess {
 
     @Override
     public void addComment(int note, String comment, Utilisateur user, String drinkName) throws SQLException {
-       PreparedStatement  preparedStatement = connection.prepareStatement("CALL add_comment(?,?,?,?);");
-        preparedStatement.setInt(1,note);
-        preparedStatement.setString(2,comment);
-        preparedStatement.setString(3,user.getPseudo());
-        preparedStatement.setString(4,drinkName);
+        CallableStatement callableStatement  = connection.prepareCall("CALL add_comment(?,?,?,?);");
+        callableStatement.setInt(1,note);
+        callableStatement.setString(2,comment);
+        callableStatement.setString(3,user.getPseudo());
+        callableStatement.setString(4,drinkName);
 
         try{
-            preparedStatement.executeQuery();
+            callableStatement.executeQuery();
         }
         catch (SQLException e){
             throw e;
