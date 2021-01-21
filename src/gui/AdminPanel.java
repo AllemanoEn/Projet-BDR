@@ -144,7 +144,6 @@ public class AdminPanel extends JFrame {
                         if(tabbedPane1.getSelectedComponent() == addBiereTab) {
                             try {
                                 mainView.idbAccess.addBeer(tfNomBiere.getText(),
-                                        2,
                                         Integer.parseInt(tfQuantiteBiere.getText()),
                                         Double.parseDouble(tfPrixVenteBiere.getText()),
                                         Double.parseDouble(tfPrixAchatBiere.getText()),
