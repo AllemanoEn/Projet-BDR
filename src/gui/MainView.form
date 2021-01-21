@@ -41,6 +41,7 @@
                         <constraints/>
                         <properties>
                           <model/>
+                          <selectionMode value="0"/>
                         </properties>
                       </component>
                     </children>
@@ -71,7 +72,9 @@
                         <preferred-size width="150" height="50"/>
                       </grid>
                     </constraints>
-                    <properties/>
+                    <properties>
+                      <selectionMode value="0"/>
+                    </properties>
                   </component>
                   <component id="f9f66" class="javax.swing.JList" binding="listNote">
                     <constraints>
@@ -81,6 +84,7 @@
                     </constraints>
                     <properties>
                       <enabled value="false"/>
+                      <selectionMode value="0"/>
                     </properties>
                   </component>
                   <component id="7c45f" class="javax.swing.JLabel">
@@ -136,7 +140,9 @@
                     <children>
                       <component id="797e8" class="javax.swing.JList" binding="listOrientation">
                         <constraints/>
-                        <properties/>
+                        <properties>
+                          <selectionMode value="0"/>
+                        </properties>
                       </component>
                     </children>
                   </scrollpane>
@@ -154,7 +160,9 @@
                         <preferred-size width="150" height="50"/>
                       </grid>
                     </constraints>
-                    <properties/>
+                    <properties>
+                      <selectionMode value="0"/>
+                    </properties>
                   </component>
                   <component id="6a055" class="javax.swing.JLabel">
                     <constraints>

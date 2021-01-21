@@ -51,6 +51,7 @@ public class AdminPanel extends JFrame {
     private JTextField tfEmail;
     private JTextField tfPassword;
     private JButton bAddUtilisateur;
+    private JCheckBox isAdmin;
 
     public AdminPanel(MainView mainView) {
         super("Admin Panel");
@@ -165,7 +166,7 @@ public class AdminPanel extends JFrame {
                         tfEmail.setText(u.getEmail());
                         tfPassword.setText(u.getPassword());
                         cbOrientation.setSelectedItem(u.getOrientation());
-                        rbIsAdmin.setSelected(u.isAdmin());
+                        isAdmin.setSelected(u.isAdmin());
 
                     }
                 }
@@ -201,7 +202,7 @@ public class AdminPanel extends JFrame {
                             tfPassword.getText(),
                             tfEmail.getText(),
                             cbOrientation.getSelectedIndex(),
-                            rbIsAdmin.isChecked());
+                            isAdmin.isSelected());
 
                     softList.setListData(mainView.idbAccess.getSoftDrinks());
 

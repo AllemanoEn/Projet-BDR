@@ -475,14 +475,6 @@
                     </constraints>
                     <properties/>
                   </component>
-                  <component id="4f39c" class="javax.swing.JRadioButton" binding="rbIsAdmin">
-                    <constraints>
-                      <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                    </constraints>
-                    <properties>
-                      <text value="Est admin"/>
-                    </properties>
-                  </component>
                   <component id="eba92" class="javax.swing.JPasswordField" binding="tfPassword">
                     <constraints>
                       <grid row="2" column="2" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
@@ -490,6 +482,14 @@
                       </grid>
                     </constraints>
                     <properties/>
+                  </component>
+                  <component id="52a43" class="javax.swing.JCheckBox" binding="isAdmin">
+                    <constraints>
+                      <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <text value="est Admin"/>
+                    </properties>
                   </component>
                 </children>
               </grid>
