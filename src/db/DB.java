@@ -47,6 +47,30 @@ public class DB implements IDBAccess {
     }
 
     @Override
+    public Utilisateur[] getUsers() throws SQLException{
+        PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM list_usr");
+        ArrayList<Utilisateur> arrayList = new ArrayList<>();
+
+        try{
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while(resultSet.next()) {
+                arrayList.add(new Utilisateur(resultSet.getString(1),
+                        resultSet.getString(2),
+                        resultSet.getString(3),
+                        resultSet.getString(4),
+                        resultSet.getBoolean(5)));
+
+            }
+
+            return arrayList.toArray(new Utilisateur[0]);
+        }
+        catch (SQLException e){
+            throw e;
+        }
+    }
+
+    @Override
     public boolean login(Utilisateur utilisateur) throws SQLException {
 
         PreparedStatement preparedStatement = connection.prepareStatement("select * from login(?,?);");

@@ -35,6 +35,8 @@ public interface IDBAccess {
 
     void setUser(Utilisateur u);
 
+    Utilisateur[] getUsers() throws SQLException;
+
     boolean isConnected();
 
     boolean isConnectedAsAdmin();

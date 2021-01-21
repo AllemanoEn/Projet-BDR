@@ -13,6 +13,14 @@ public class Utilisateur {
         this.admin = admin;
     }
 
+    public Utilisateur(String pseudo, String email, String password, String orientation, boolean admin){
+        this.pseudo = pseudo;
+        this.email = email;
+        this.password = password;
+        this.orientation = orientation;
+        this.admin = admin;
+    }
+
     public Utilisateur(String pseudo, String password){
         this.pseudo = pseudo;
         this.password = password;
