@@ -267,31 +267,4 @@ public class AdminPanel extends JFrame {
             }
         });
     }
-
-
-    private void disableTextFields() {
-        tfBrasserie.setEnabled(false);
-        tfNameSoft.setEnabled(false);
-        tfPaysBiere.setEnabled(false);
-        tfStyleBiere.setEnabled(false);
-        tfContenanceBiere.setEnabled(false);
-        tfPourcentageBiere.setEnabled(false);
-        tfRegion.setEnabled(false);
-        tfNomBiere.setEnabled(false);
-    }
-
-    private void enableTextFields() {
-        tfBrasserie.setEnabled(true);
-        tfNameSoft.setEnabled(true);
-        tfPaysBiere.setEnabled(true);
-        tfStyleBiere.setEnabled(true);
-        tfContenanceBiere.setEnabled(true);
-        tfPourcentageBiere.setEnabled(true);
-        tfRegion.setEnabled(true);
-        tfNomBiere.setEnabled(true);
-    }
-
-    private void createUIComponents() {
-        // TODO: place custom component creation code here
-    }
 }

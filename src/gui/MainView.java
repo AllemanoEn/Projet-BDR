@@ -1,14 +1,12 @@
 package gui;
 
 import db.Biere;
-import db.Commentaire;
 import db.IDBAccess;
 import db.Utilisateur;
 
 import java.awt.*;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
-import java.sql.Array;
 import java.sql.SQLException;
 
 import javax.swing.*;
@@ -17,7 +15,6 @@ import javax.swing.event.ListSelectionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class MainView extends JFrame {
     private JPanel mainPanel;
@@ -47,7 +44,7 @@ public class MainView extends JFrame {
     private JLabel Biere;
     private JList listSoft;
     private JList listOrientation;
-    private JButton ajouterUnÉvénementButton;
+    private JButton addEventBT;
     private JList listNote;
     private JList listComment;
     private JTextArea commentArea;
@@ -75,10 +72,10 @@ public class MainView extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                // TODO tmp admin
                 u = new Utilisateur(utilisateurTextField.getText(), mdpPasswordField.getText());
 
                 try {
+
                     if(idbAccess.login(u)){
                         label_status.setForeground( new Color(0,255,0));
                         label_status.setText(u.getPseudo() + " est connecté !");
@@ -89,6 +86,9 @@ public class MainView extends JFrame {
                             ajouterButton.setEnabled(false);
                         }
 
+
+                        // Enable buttons if logged in
+                        addEventBT.setEnabled(true);
                         btnAddComment.setEnabled(true);
                     }
                     else {
@@ -112,6 +112,7 @@ public class MainView extends JFrame {
             }
         });
 
+        // List boisson soft
         listSoft.setListData(idbAccess.getSoftDrinks());
 
 
@@ -125,10 +126,12 @@ public class MainView extends JFrame {
             nbBieresBues[i] = vals[1];
             i++;
         }
+        // Classement des orientations
         listOrientation.setListData(orientation);
         nbBiereBuesList.setListData(nbBieresBues);
 
         beerLB.setCellRenderer(new BiereListRenderer());
+
 
         updateNoteBiere();
 
@@ -161,7 +164,7 @@ public class MainView extends JFrame {
             }
         });
 
-        ajouterUnÉvénementButton.addActionListener(new ActionListener() {
+        addEventBT.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
@@ -215,13 +218,14 @@ public class MainView extends JFrame {
         });
     }
 
+
+    // MAJ du classement des bières
     public void updateNoteBiere() throws SQLException{
         beerLB.setCellRenderer(new BiereListRenderer());
 
         Biere[] beers = idbAccess.getBeers();
         beerLB.setListData(beers);
 
-        String[] str = new String[beers.length];
         ArrayList<String> arrayList = new ArrayList<>();
         for(Biere biere : beers) {
             arrayList.add(String.format("%.1f", biere.getNoteMoyenne()));
