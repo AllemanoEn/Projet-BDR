@@ -14,3 +14,8 @@ Le script à exécuter pour construire notre DB contient :
   - La création des vues
   - La création des triggers
 ------------------------------------------------------------
+
+
+# Déploiement de l'application Java
+La seule librairie externe utilisée est JDBC PostgreSQL: https://jdbc.postgresql.org/download.html
+Puis il suffit de compiler les sources.
