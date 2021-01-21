@@ -48,6 +48,9 @@ public class MainView extends JFrame {
     private JButton ajouterUnÉvénementButton;
     private JList listNote;
     private JList listComment;
+    private JTextArea commentArea;
+    private JButton btnAddComment;
+    private JComboBox cbNote;
     private AdminPanel displayAddPopUp;
 
     private Utilisateur u;
@@ -55,7 +58,7 @@ public class MainView extends JFrame {
     IDBAccess idbAccess;
 
     public MainView(IDBAccess DBprojet) throws SQLException {
-        setSize(800, 600);
+        setSize(1024, 800);
         setContentPane(mainPanel);
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -137,6 +140,7 @@ public class MainView extends JFrame {
                         beerRegion.setText(biere.getRegion());
 
                         try {
+                            listComment.setCellRenderer(new CommentListRenderer());
                             listComment.setListData(idbAccess.getComments(biere.getName()));
                         } catch (SQLException throwables) {
                             throwables.printStackTrace();
@@ -155,7 +159,19 @@ public class MainView extends JFrame {
             }
         });
 
-        listComment.setCellRenderer(new CommentListRenderer());
 
+        btnAddComment.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+
+
+                if(beerLB.getSelectedIndex() == -1) {
+                    return;
+                }
+
+                //TODO Add commentaire
+                String comment = commentArea.getText();
+            }
+        });
     }
 }

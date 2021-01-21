@@ -21,7 +21,7 @@ public interface IDBAccess {
 
     Integer[] getTables(Timestamp date) throws SQLException;
 
-    void addComment(int note, String commentBy,Utilisateur user, int boisson) throws SQLException;
+    void addComment(int note, String commentBy, Utilisateur user, String drinkName) throws SQLException;
 
     Commentaire[] getComments(String drinkName) throws SQLException;
 
@@ -34,6 +34,8 @@ public interface IDBAccess {
     int getBoisson(String name) throws SQLException;
 
     void setUser(Utilisateur u);
+
+    Utilisateur[] getUsers() throws SQLException;
 
     boolean isConnected();
 

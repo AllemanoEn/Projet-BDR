@@ -47,6 +47,30 @@ public class DB implements IDBAccess {
     }
 
     @Override
+    public Utilisateur[] getUsers() throws SQLException{
+        PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM list_usr");
+        ArrayList<Utilisateur> arrayList = new ArrayList<>();
+
+        try{
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while(resultSet.next()) {
+                arrayList.add(new Utilisateur(resultSet.getString(1),
+                        resultSet.getString(2),
+                        resultSet.getString(3),
+                        resultSet.getString(4),
+                        resultSet.getBoolean(5)));
+
+            }
+
+            return arrayList.toArray(new Utilisateur[0]);
+        }
+        catch (SQLException e){
+            throw e;
+        }
+    }
+
+    @Override
     public boolean login(Utilisateur utilisateur) throws SQLException {
 
         PreparedStatement preparedStatement = connection.prepareStatement("select * from login(?,?);");
@@ -173,12 +197,14 @@ public class DB implements IDBAccess {
     }
 
     @Override
-    public void addComment(int note, String comment, Utilisateur user, int boisson) throws SQLException {
-        PreparedStatement  preparedStatement = connection.prepareStatement("INSERT INTO commentaire (nom, type, quantitestock, prixvente, prixachat) VALUES (?,?,?,?);");
+    public void addComment(int note, String comment, Utilisateur user, String drinkName) throws SQLException {
+      /* PreparedStatement  preparedStatement = connection.prepareStatement("INSERT INTO commentaire (nom, type, quantitestock, prixvente, prixachat) VALUES (?,?,?,?);");
         preparedStatement.setInt(1,note);
         preparedStatement.setString(2,comment);
         preparedStatement.setString(3,user.getPseudo());
         preparedStatement.setInt(4,boisson);
+
+
 
         try{
             preparedStatement.executeUpdate();
@@ -186,6 +212,8 @@ public class DB implements IDBAccess {
         catch (SQLException e){
             throw e;
         }
+
+       */
     }
 
     @Override
