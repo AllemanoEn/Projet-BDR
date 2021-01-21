@@ -52,6 +52,7 @@ public class AdminPanel extends JFrame {
     private JTextField tfPassword;
     private JButton bAddUtilisateur;
     private JCheckBox isAdmin;
+    private JComboBox utilisateurCB;
 
     public AdminPanel(MainView mainView) {
         super("Admin Panel");
