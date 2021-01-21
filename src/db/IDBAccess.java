@@ -13,7 +13,7 @@ public interface IDBAccess {
 
     void addDrink(String name, int type, int quantite, double prixvente, double prixachat) throws SQLException;
 
-    public void addBeer(String name, int type, int quantite, double prixvente, double prixachat, double pourcentage,
+    void addBeer(String name, int type, int quantite, double prixvente, double prixachat, double pourcentage,
                         double contenance, String pays, String region, String brasserie, String style) throws SQLException;
 
     Boisson getDrink(String name) throws SQLException;
@@ -39,13 +39,15 @@ public interface IDBAccess {
 
     int getBoisson(String name) throws SQLException;
 
-    public int getStyle(String name) throws SQLException;
+    int getStyle(String name) throws SQLException;
 
     void setUser(Utilisateur u);
 
     Utilisateur[] getUsers() throws SQLException;
 
     String[] getOrientation() throws SQLException;
+
+    void addTransaction(Utilisateur u, Boisson b, int quantite);
 
     boolean isConnected();
 

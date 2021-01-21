@@ -167,6 +167,11 @@ public class DB implements IDBAccess {
     }
 
     @Override
+    public void addTransaction(Utilisateur u, Boisson b, int quantite) {
+
+    }
+
+    @Override
     public void addDrink(String name, int type, int quantite, double prixvente, double prixachat) throws SQLException{
 
         PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO boissons (nom, type, quantitestock, prixvente, prixachat) VALUES (?,?,?,?,?);");
