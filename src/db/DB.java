@@ -100,7 +100,7 @@ public class DB implements IDBAccess {
 
             while(resultSet.next()) {
                 arrayList.add(new Biere(resultSet.getString(1), resultSet.getInt(2), resultSet.getDouble(3),
-                        resultSet.getDouble(4), resultSet.getDouble(5), resultSet.getInt(6), resultSet.getDouble(7),
+                        resultSet.getDouble(4), resultSet.getDouble(5), resultSet.getDouble(6), resultSet.getDouble(7),
                         resultSet.getString(8), resultSet.getString(9), resultSet.getString(10), resultSet.getString(11)));
 
             }
