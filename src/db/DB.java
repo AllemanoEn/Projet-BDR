@@ -201,24 +201,34 @@ public class DB implements IDBAccess {
 
     @Override
     public void addTransaction(String u, String b, int quantite) throws SQLException {
-
-        double prix = b.getPrixVente() * quantite;
         int idTransaction = 0;
+        double prixVente = 0;
+        double prix;
 
-        PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO transaction (addition,by) VALUES (?,?);");
+        PreparedStatement preparedStatement = connection.prepareStatement("SELECT prixvente FROM boissons where nom = ?");
+        preparedStatement.setString(1,b);
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        if (resultSet.next()){
+            prixVente = resultSet.getDouble(1);
+        }
+
+        prix = prixVente * quantite;
+
+        preparedStatement = connection.prepareStatement("INSERT INTO transaction (addition,by) VALUES (?,?);");
         preparedStatement.setDouble(1,prix);
-        preparedStatement.setString(2,u.getPseudo());
+        preparedStatement.setString(2,u);
         preparedStatement.executeUpdate();
 
         preparedStatement = connection.prepareStatement("SELECT id FROM transaction ORDER BY id DESC");
-        ResultSet resultSet = preparedStatement.executeQuery();
+        resultSet = preparedStatement.executeQuery();
 
         if (resultSet.next()){
             idTransaction = resultSet.getInt(1);
         }
 
         preparedStatement = connection.prepareStatement("INSERT INTO boisson_transaction (numeroboisson,numerotransaction,quantite) VALUES (?,?,?);");
-        preparedStatement.setInt(1,getBoisson(b.getName()));
+        preparedStatement.setInt(1,getBoisson(b));
         preparedStatement.setInt(2,idTransaction);
         preparedStatement.setInt(3,quantite);
         preparedStatement.executeUpdate();
