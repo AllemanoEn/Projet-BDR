@@ -174,9 +174,12 @@ public class MainView extends JFrame {
 
                 try {
                     idbAccess.addComment(note, comment, u, name);
+                    listComment.setListData(idbAccess.getComments(name));   // maj comment
                 } catch (SQLException throwables) {
                     throwables.printStackTrace();
                 }
+
+
             }
         });
     }

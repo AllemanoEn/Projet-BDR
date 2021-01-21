@@ -464,6 +464,8 @@ CREATE PROCEDURE add_comment (new_note int,new_comment text, pseudo text, nom_bo
 AS
 $$
 INSERT INTO commentaire (note, comment, commentby, numeroboisson)
-                 values (new_note,new_comment,pseudo,(SELECT ID FROM boissons WHERE nom = nom_boisson));
+                 values (new_note,new_comment,pseudo,(
+                     SELECT a.id FROM boissons INNER JOIN alcool a ON boissons.id = a.boisson
+                        WHERE nom = nom_boisson));
 $$
 language sql;
