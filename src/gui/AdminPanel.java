@@ -37,6 +37,10 @@ public class AdminPanel extends JFrame {
     private JTextField tfPrixAchatSoft;
     private JTextField tfRegion;
     private JTextField tfBrasserie;
+    private JPanel addUserTab;
+    private JComboBox comboBox1;
+    private JRadioButton radioButtonIsAdmin;
+    private JScrollPane UserList;
 
     public AdminPanel(MainView mainView) {
         super("Admin Panel");
