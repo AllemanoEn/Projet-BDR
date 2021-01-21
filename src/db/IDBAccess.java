@@ -1,7 +1,7 @@
 /*
  * Fichier  : IDBAccess.java
  * Auteurs  : Allemano Enzo, Paulus Yohann, Merk Melvin
- * But      : Défini toutes les fonctions nécessaire à l'affiche de la DB
+ * But      : Défini toutes les fonctions nécessaire à l'affichage et la mise à jour de la DB
  * Date     : 21.01.2021
  */
 package db;
