@@ -159,7 +159,6 @@ public class MainView extends JFrame {
             }
         });
 
-
         btnAddComment.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -169,8 +168,15 @@ public class MainView extends JFrame {
                     return;
                 }
 
-                //TODO Add commentaire
                 String comment = commentArea.getText();
+                String name = ((db.Biere)beerLB.getSelectedValue()).getName();
+                int note = Integer.decode(String.valueOf(cbNote.getSelectedItem()));
+
+                try {
+                    idbAccess.addComment(note, comment, u, name);
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
             }
         });
     }
