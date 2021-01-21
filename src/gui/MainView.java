@@ -135,6 +135,12 @@ public class MainView extends JFrame {
                         beerPercentage.setText("" + biere.getPourcentage());
                         beerQuantity.setText("" + biere.getContenance());
                         beerRegion.setText(biere.getRegion());
+
+                        try {
+                            listComment.setListData(idbAccess.getComments(biere.getName()));
+                        } catch (SQLException throwables) {
+                            throwables.printStackTrace();
+                        }
                     }
                 }
             }
@@ -150,6 +156,6 @@ public class MainView extends JFrame {
         });
 
         listComment.setCellRenderer(new CommentListRenderer());
-        listComment.setListData(idbAccess.getComments("BFM")); // TODO
+
     }
 }
