@@ -107,7 +107,7 @@ public class DB implements IDBAccess {
 
      public Integer[] getTables(Timestamp date) throws SQLException{
         preparedStatement = connection.prepareStatement("SELECT * FROM table_libre(?)");
-         preparedStatement.setTimestamp(1,date);
+        preparedStatement.setObject(1,date);
         ArrayList<Integer> arrayList = new ArrayList<>();
         try{
             ResultSet resultSet = preparedStatement.executeQuery();

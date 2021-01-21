@@ -33,7 +33,7 @@ create table utilisateur (
 create table evenement(
     id smallserial,
     nom text not null,
-    date timestamp with time zone default now() not null,
+    date date not null,
     organisateur varchar(20) not null,
     primary key (id),
     foreign key (organisateur) references utilisateur(pseudo)
