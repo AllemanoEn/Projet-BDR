@@ -41,6 +41,10 @@ public class AdminPanel extends JFrame {
     private JComboBox comboBox1;
     private JRadioButton radioButtonIsAdmin;
     private JScrollPane UserList;
+    private JPanel addTransactionTab;
+    private JTextField quantiteTF;
+    private JComboBox boissonCB;
+    private JButton ajouterTransaction;
 
     public AdminPanel(MainView mainView) {
         super("Admin Panel");
