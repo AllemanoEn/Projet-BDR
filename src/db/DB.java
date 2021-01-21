@@ -275,6 +275,15 @@ public class DB implements IDBAccess {
 
     }
 
+    public void updateDrink(String drinkName, int quantite, double prixVente, double prixAchat) throws SQLException{
+
+    }
+
+    public void updateBeer(String drinkName, int quantite, double prixVente, double prixAchat, double contenance, double pourcentage) throws SQLException{
+    updateDrink(drinkName, quantite, prixVente, prixAchat);
+    }
+
+
     @Override
     public String[] getOrientationLeaderboard() throws SQLException {
 

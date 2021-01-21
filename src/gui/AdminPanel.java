@@ -139,8 +139,6 @@ public class AdminPanel extends JFrame {
                 try {
                     if(mainView.idbAccess.getDrink(tabbedPane1.getSelectedComponent() == addBiereTab ? tfNomBiere.getText() : tfNameSoft.getText()) == null) {
                         if(tabbedPane1.getSelectedComponent() == addBiereTab) {
-                            //mainView.idbAccess.addDrink(tfNomBiere);
-                            // TODO addBiere in DB.java
                             try {
                                 mainView.idbAccess.addBeer(tfNomBiere.getText(),
                                         2,

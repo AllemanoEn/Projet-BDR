@@ -26,6 +26,9 @@ public interface IDBAccess {
 
     void addComment(int note, String commentBy, Utilisateur user, String drinkName) throws SQLException;
 
+    void updateDrink(String drinkName, int quantite, double prixVente, double prixAchat) throws SQLException;
+    void updateBeer(String drinkName, int quantite, double prixVente, double prixAchat, double contenance, double pourcentage) throws SQLException;
+
     Commentaire[] getComments(String drinkName) throws SQLException;
 
     String[] getOrientationLeaderboard() throws SQLException;
