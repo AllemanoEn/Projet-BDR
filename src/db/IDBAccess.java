@@ -60,13 +60,36 @@ public interface IDBAccess {
 
     //Orientation function
 
+    /**
+     * Retourne toutes
+     * @return
+     * @throws SQLException
+     */
     String[] getOrientation() throws SQLException;
 
+    /**
+     * Permet de retourner les orientations classées par bières bues
+     * @return Un tableau de String qui contient le nom des orientations
+     * @throws SQLException
+     */
     String[] getOrientationLeaderboard() throws SQLException;
 
     //Other function
 
+    /**
+     * Permet de retourner la liste des tables disponibles à une certaine date
+     * @param date
+     * @return Tableau de int qui correspond à l'id des tables
+     * @throws SQLException
+     */
     Integer[] getTables(Timestamp date) throws SQLException;
 
+    /**
+     * Permet d'ajouter une transaction
+     * @param u Utilisateur qui a efféctué la transaction
+     * @param b Boisson achetée
+     * @param quantite Quantité de boisson achetée
+     * @throws SQLException
+     */
     void addTransaction(String u, String b, int quantite) throws SQLException;
 }
