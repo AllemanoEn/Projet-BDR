@@ -47,7 +47,7 @@ public interface IDBAccess {
 
     String[] getOrientation() throws SQLException;
 
-    void addTransaction(Utilisateur u, Boisson b, int quantite);
+    void addTransaction(Utilisateur u, Boisson b, int quantite) throws SQLException;
 
     boolean isConnected();
 

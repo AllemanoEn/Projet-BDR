@@ -167,7 +167,28 @@ public class DB implements IDBAccess {
     }
 
     @Override
-    public void addTransaction(Utilisateur u, Boisson b, int quantite) {
+    public void addTransaction(Utilisateur u, Boisson b, int quantite) throws SQLException {
+
+        double prix = b.getPrixVente() * quantite;
+        int idTransaction = 0;
+
+        PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO transaction (addition,by) VALUES (?,?);");
+        preparedStatement.setDouble(1,prix);
+        preparedStatement.setString(2,u.getPseudo());
+        preparedStatement.executeUpdate();
+
+        preparedStatement = connection.prepareStatement("SELECT id FROM transaction ORDER BY id DESC");
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        if (resultSet.next()){
+            idTransaction = resultSet.getInt(1);
+        }
+
+        preparedStatement = connection.prepareStatement("INSERT INTO boisson_transaction (numeroboisson,numerotransaction,quantite) VALUES (?,?,?);");
+        preparedStatement.setInt(1,getBoisson(b.getName()));
+        preparedStatement.setInt(2,idTransaction);
+        preparedStatement.setInt(3,quantite);
+        preparedStatement.executeUpdate();
 
     }
 
