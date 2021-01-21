@@ -246,8 +246,8 @@ public class AdminPanel extends JFrame {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 try {
-                    mainView.idbAccess.updateDrink(tfNomBiere.getText(), Integer.parseInt(tfQuantiteBiere.getText()),
-                            Double.parseDouble(tfPrixVenteBiere.getText()), Double.parseDouble(tfPrixAchatBiere.getText()));
+                    mainView.idbAccess.updateDrink(tfNameSoft.getText(), Integer.parseInt(tfQuantitySoft.getText()),
+                            Double.parseDouble(tfPrixVenteSoft.getText()), Double.parseDouble(tfPrixAchatSoft.getText()));
                 } catch (SQLException throwables) {
                     throwables.printStackTrace();
                 }
