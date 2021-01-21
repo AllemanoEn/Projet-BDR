@@ -230,6 +230,29 @@ public class AdminPanel extends JFrame {
                 }
             }
         });
+        majBiereButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                try {
+                    mainView.idbAccess.updateBeer(tfNomBiere.getText(), Integer.parseInt(tfQuantiteBiere.getText()),
+                            Double.parseDouble(tfPrixVenteBiere.getText()), Double.parseDouble(tfPrixAchatBiere.getText()),
+                                    Double.parseDouble(tfContenanceBiere.getText()), Double.parseDouble(tfPourcentageBiere.getText()));
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
+            }
+        });
+        buttonmaj.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                try {
+                    mainView.idbAccess.updateDrink(tfNomBiere.getText(), Integer.parseInt(tfQuantiteBiere.getText()),
+                            Double.parseDouble(tfPrixVenteBiere.getText()), Double.parseDouble(tfPrixAchatBiere.getText()));
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
+            }
+        });
     }
 
 

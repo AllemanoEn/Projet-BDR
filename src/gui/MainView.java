@@ -130,17 +130,7 @@ public class MainView extends JFrame {
 
         beerLB.setCellRenderer(new BiereListRenderer());
 
-        Biere[] beers = idbAccess.getBeers();
-        beerLB.setListData(beers);
-
-        String[] str = new String[beers.length];
-        ArrayList<String> arrayList = new ArrayList<>();
-        for(Biere biere : beers) {
-            arrayList.add(String.format("%.1f", biere.getNoteMoyenne()));
-        }
-
-        listNote.setCellRenderer(new NoteListRenderer());
-        listNote.setListData(arrayList.toArray(new String[0]));
+        updateNoteBiere();
 
         beerLB.addListSelectionListener(new ListSelectionListener() {
             @Override
@@ -200,6 +190,8 @@ public class MainView extends JFrame {
                     commentArea.setText("");
                     cbNote.setSelectedIndex(0);
 
+                    updateNoteBiere();
+
                 } catch (SQLException throwables) {
                     throwables.printStackTrace();
                 }
@@ -221,5 +213,21 @@ public class MainView extends JFrame {
                 mdpPasswordField.setText("");
             }
         });
+    }
+
+    public void updateNoteBiere() throws SQLException{
+        beerLB.setCellRenderer(new BiereListRenderer());
+
+        Biere[] beers = idbAccess.getBeers();
+        beerLB.setListData(beers);
+
+        String[] str = new String[beers.length];
+        ArrayList<String> arrayList = new ArrayList<>();
+        for(Biere biere : beers) {
+            arrayList.add(String.format("%.1f", biere.getNoteMoyenne()));
+        }
+
+        listNote.setCellRenderer(new NoteListRenderer());
+        listNote.setListData(arrayList.toArray(new String[0]));
     }
 }
