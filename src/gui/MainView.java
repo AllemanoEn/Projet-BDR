@@ -46,7 +46,10 @@ public class MainView extends JFrame {
     private JList listOrientation;
     private JButton ajouterUnÉvénementButton;
     private JList listNote;
+    private JList listComment;
     private AdminPanel displayAddPopUp;
+
+    private Utilisateur u;
 
     IDBAccess idbAccess;
 
@@ -64,7 +67,8 @@ public class MainView extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                Utilisateur u = new Utilisateur(utilisateurTextField.getText(), mdpPasswordField.getText(),adminCheckBox.isSelected());
+                // TODO tmp admin
+                u = new Utilisateur(utilisateurTextField.getText(), mdpPasswordField.getText(), true);
 
                 try {
                     if(idbAccess.login(u)){
@@ -80,6 +84,7 @@ public class MainView extends JFrame {
                     else {
                         label_status.setForeground( new Color(255,0,0));
                         label_status.setText("offline");
+                        u = null;
                     }
                 } catch (SQLException throwables) {
                     throwables.printStackTrace();
@@ -142,5 +147,8 @@ public class MainView extends JFrame {
                 EventPanel eventPanel = new EventPanel(MainView.this);
             }
         });
+
+        listComment.setCellRenderer(new CommentListRenderer());
+        //listComment.setListData(idbAccess.getComments(bierename)); // TODO
     }
 }

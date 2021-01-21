@@ -1,21 +1,21 @@
 package gui;
 
-import db.Biere;
+import db.Commentaire;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class BiereListRenderer extends JLabel implements ListCellRenderer<Biere> {
+public class CommentListRenderer extends JLabel implements ListCellRenderer<Commentaire> {
 
-    public BiereListRenderer() {
+    public CommentListRenderer() {
         setOpaque(true);
     }
 
     @Override
-    public Component getListCellRendererComponent(JList<? extends Biere> jList, Biere biere,
+    public Component getListCellRendererComponent(JList<? extends Commentaire> jList, Commentaire note,
                                                   int index, boolean isSelected, boolean cellHasFocus) {
 
-        setText(String.format("%d) %-25s", index+1, biere.getName()));
+
 
         if (isSelected) {
             setBackground(jList.getSelectionBackground());

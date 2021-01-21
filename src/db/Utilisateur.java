@@ -11,6 +11,12 @@ public class Utilisateur {
         this.admin = admin;
     }
 
+    public Utilisateur(String pseudo, String password){
+        this.pseudo = pseudo;
+        this.password = password;
+        this.admin = false;
+    }
+
     public String getPseudo(){
         return pseudo;
     }

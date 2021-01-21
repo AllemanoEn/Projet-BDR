@@ -3,7 +3,7 @@
   <grid id="27dc6" binding="mainPanel" layout-manager="GridLayoutManager" row-count="2" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
-      <xy x="20" y="20" width="711" height="472"/>
+      <xy x="20" y="20" width="818" height="472"/>
     </constraints>
     <properties/>
     <border type="none"/>
@@ -174,23 +174,6 @@
               <text value="utilisateur"/>
             </properties>
           </component>
-          <component id="9dffd" class="javax.swing.JLabel">
-            <constraints>
-              <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value="Status : "/>
-            </properties>
-          </component>
-          <component id="7ae27" class="javax.swing.JLabel" binding="label_status">
-            <constraints>
-              <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <foreground color="-4511595"/>
-              <text value=""/>
-            </properties>
-          </component>
           <component id="7d57e" class="javax.swing.JButton" binding="seConnecterButton" default-binding="true">
             <constraints>
               <grid row="1" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
@@ -199,23 +182,16 @@
               <text value="Se connecter"/>
             </properties>
           </component>
-          <component id="cdee5" class="javax.swing.JCheckBox" binding="adminCheckBox" default-binding="true">
-            <constraints>
-              <grid row="2" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value="admin"/>
-            </properties>
-          </component>
           <component id="760fb" class="javax.swing.JButton" binding="ajouterButton">
             <constraints>
               <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <enabled value="false"/>
               <text value="Ajouter"/>
             </properties>
           </component>
-          <grid id="55495" binding="beerInfo" layout-manager="GridLayoutManager" row-count="3" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+          <grid id="55495" binding="beerInfo" layout-manager="GridLayoutManager" row-count="4" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
             <margin top="0" left="0" bottom="0" right="0"/>
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="3" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
@@ -304,8 +280,33 @@
                   <text value="Select a drink"/>
                 </properties>
               </component>
+              <component id="40334" class="javax.swing.JList" binding="listComment">
+                <constraints>
+                  <grid row="3" column="0" row-span="1" col-span="4" vsize-policy="6" hsize-policy="2" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="50"/>
+                  </grid>
+                </constraints>
+                <properties/>
+              </component>
             </children>
           </grid>
+          <component id="9dffd" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Status : "/>
+            </properties>
+          </component>
+          <component id="7ae27" class="javax.swing.JLabel" binding="label_status">
+            <constraints>
+              <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <foreground color="-4511595"/>
+              <text value=""/>
+            </properties>
+          </component>
         </children>
       </grid>
     </children>
