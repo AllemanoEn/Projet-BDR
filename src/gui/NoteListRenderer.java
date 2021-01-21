@@ -5,17 +5,17 @@ import db.Biere;
 import javax.swing.*;
 import java.awt.*;
 
-public class BiereListRenderer extends JLabel implements ListCellRenderer<Biere> {
+public class NoteListRenderer extends JLabel implements ListCellRenderer<String> {
 
-    public BiereListRenderer() {
+    public NoteListRenderer() {
         setOpaque(true);
     }
 
     @Override
-    public Component getListCellRendererComponent(JList<? extends Biere> jList, Biere biere,
+    public Component getListCellRendererComponent(JList<? extends String> jList, String note,
                                                   int index, boolean isSelected, boolean cellHasFocus) {
 
-        setText(String.format("%d) %-25s", index, biere.getName()));
+        setText(note);
 
         if (isSelected) {
             setBackground(jList.getSelectionBackground());

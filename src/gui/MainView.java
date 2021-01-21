@@ -5,6 +5,7 @@ import db.IDBAccess;
 import db.Utilisateur;
 
 import java.awt.*;
+import java.sql.Array;
 import java.sql.SQLException;
 
 import javax.swing.*;
@@ -12,6 +13,8 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class MainView extends JFrame {
     private JPanel mainPanel;
@@ -28,7 +31,6 @@ public class MainView extends JFrame {
     private JPanel event_tab;
     private JPanel orientation_tab;
     private JScrollPane soft_scroll;
-    private JScrollPane biere_scroll;
     private JScrollPane event_scroll;
     private JScrollPane orientation_scroll;
     private JButton ajouterButton;
@@ -40,10 +42,10 @@ public class MainView extends JFrame {
     private JLabel beerRegion;
     private JLabel beerCountry;
     private JLabel Biere;
-    private JLabel Note;
     private JList listSoft;
     private JList listOrientation;
     private JButton ajouterUnÉvénementButton;
+    private JList listNote;
     private AdminPanel displayAddPopUp;
 
     IDBAccess idbAccess;
@@ -99,7 +101,17 @@ public class MainView extends JFrame {
         listOrientation.setListData(idbAccess.getOrientationLeaderboard());
 
         beerLB.setCellRenderer(new BiereListRenderer());
-        beerLB.setListData(idbAccess.getBeers());
+
+        Biere[] beers = idbAccess.getBeers();
+        beerLB.setListData(beers);
+
+        String[] str = new String[beers.length];
+        ArrayList<String> arrayList = new ArrayList<>();
+        for(Biere biere : beers) {
+            arrayList.add("" + biere.getNoteMoyenne());
+        }
+        listNote.setCellRenderer(new NoteListRenderer());
+        listNote.setListData(arrayList.toArray(new String[0]));
 
         beerLB.addListSelectionListener(new ListSelectionListener() {
             @Override
