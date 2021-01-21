@@ -21,7 +21,7 @@ public interface IDBAccess {
 
     Integer[] getTables(Timestamp date) throws SQLException;
 
-    void addComment(int note, String commentBy,Utilisateur user, int boisson) throws SQLException;
+    void addComment(int note, String commentBy, Utilisateur user, String drinkName) throws SQLException;
 
     Commentaire[] getComments(String drinkName) throws SQLException;
 
