@@ -2,6 +2,7 @@ package gui;
 
 import db.Biere;
 import db.Boisson;
+import db.Utilisateur;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -38,13 +39,17 @@ public class AdminPanel extends JFrame {
     private JTextField tfRegion;
     private JTextField tfBrasserie;
     private JPanel addUserTab;
-    private JComboBox comboBox1;
-    private JRadioButton radioButtonIsAdmin;
+    private JComboBox cbOrientation;
+    private JRadioButton rbIsAdmin;
     private JScrollPane UserList;
     private JPanel addTransactionTab;
     private JTextField quantiteTF;
     private JComboBox boissonCB;
     private JButton ajouterTransaction;
+    private JList utilisateurList;
+    private JTextField tfPseudo;
+    private JTextField tfEmail;
+    private JTextField tfPassword;
 
     public AdminPanel(MainView mainView) {
         super("Admin Panel");
@@ -62,6 +67,10 @@ public class AdminPanel extends JFrame {
         try {
             beerList.setListData(mainView.idbAccess.getBeers());
             softList.setListData(mainView.idbAccess.getSoftDrinks());
+            utilisateurList.setListData(mainView.idbAccess.getUsers());
+
+            cbOrientation.setModel(new DefaultComboBoxModel<String>(mainView.idbAccess.getOrientation()));
+
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -121,7 +130,6 @@ public class AdminPanel extends JFrame {
             }
         });
 
-
         ajouterBiereButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -136,6 +144,29 @@ public class AdminPanel extends JFrame {
                     }
                 } catch (SQLException throwables) {
                     throwables.printStackTrace();
+                }
+            }
+        });
+
+        utilisateurList.addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent listSelectionEvent) {
+                if (!listSelectionEvent.getValueIsAdjusting()) {
+
+                    if (utilisateurList.getSelectedIndex() == -1) {
+
+                    } else {
+
+                        // show user info
+                        Utilisateur u = (Utilisateur) utilisateurList.getSelectedValue();
+
+                        tfPseudo.setText(u.getPseudo());
+                        tfEmail.setText(u.getEmail());
+                        tfPassword.setText(u.getPassword());
+                        cbOrientation.setSelectedItem(u.getOrientation());
+                        rbIsAdmin.setSelected(u.isAdmin());
+
+                    }
                 }
             }
         });

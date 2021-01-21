@@ -469,3 +469,5 @@ INSERT INTO commentaire (note, comment, commentby, numeroboisson)
                         WHERE nom = nom_boisson));
 $$
 language sql;
+
+SELECT * FROM orientation

@@ -387,7 +387,7 @@
                     <properties/>
                     <border type="none"/>
                     <children>
-                      <component id="f55c7" class="javax.swing.JList">
+                      <component id="f55c7" class="javax.swing.JList" binding="utilisateurList">
                         <constraints/>
                         <properties>
                           <selectionMode value="0"/>
@@ -421,15 +421,7 @@
                       <text value="Ajouter"/>
                     </properties>
                   </component>
-                  <component id="1b675" class="javax.swing.JTextField">
-                    <constraints>
-                      <grid row="2" column="2" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                        <preferred-size width="150" height="-1"/>
-                      </grid>
-                    </constraints>
-                    <properties/>
-                  </component>
-                  <component id="89fbf" class="javax.swing.JTextField">
+                  <component id="89fbf" class="javax.swing.JTextField" binding="tfEmail">
                     <constraints>
                       <grid row="1" column="2" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                         <preferred-size width="150" height="-1"/>
@@ -437,7 +429,7 @@
                     </constraints>
                     <properties/>
                   </component>
-                  <component id="20cb5" class="javax.swing.JTextField">
+                  <component id="20cb5" class="javax.swing.JTextField" binding="tfPseudo">
                     <constraints>
                       <grid row="0" column="2" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                         <preferred-size width="150" height="-1"/>
@@ -477,19 +469,27 @@
                       <text value="Orientation :"/>
                     </properties>
                   </component>
-                  <component id="629ec" class="javax.swing.JComboBox" binding="comboBox1" default-binding="true">
+                  <component id="629ec" class="javax.swing.JComboBox" binding="cbOrientation">
                     <constraints>
                       <grid row="3" column="2" row-span="1" col-span="3" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties/>
                   </component>
-                  <component id="4f39c" class="javax.swing.JRadioButton" binding="radioButtonIsAdmin">
+                  <component id="4f39c" class="javax.swing.JRadioButton" binding="rbIsAdmin">
                     <constraints>
                       <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
                       <text value="Est admin"/>
                     </properties>
+                  </component>
+                  <component id="eba92" class="javax.swing.JPasswordField" binding="tfPassword">
+                    <constraints>
+                      <grid row="2" column="2" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                        <preferred-size width="150" height="-1"/>
+                      </grid>
+                    </constraints>
+                    <properties/>
                   </component>
                 </children>
               </grid>

@@ -37,6 +37,8 @@ public interface IDBAccess {
 
     Utilisateur[] getUsers() throws SQLException;
 
+    String[] getOrientation() throws SQLException;
+
     boolean isConnected();
 
     boolean isConnectedAsAdmin();

@@ -149,8 +149,22 @@ public class DB implements IDBAccess {
         }
     }
 
+    @Override
+    public String[] getOrientation() throws SQLException{
+        PreparedStatement preparedStatement = connection.prepareStatement("SELECT nom FROM orientation");
+        ArrayList<String> arrayList = new ArrayList<>();
+        try{
+            ResultSet resultSet = preparedStatement.executeQuery();
 
-
+            while(resultSet.next()) {
+                arrayList.add(resultSet.getString(1));
+            }
+            return arrayList.toArray(new String[0]);
+        }
+        catch (SQLException e){
+            throw e;
+        }
+    }
 
     @Override
     public void addDrink(String name, int type, int quantite, int prixvente, int prixachat) throws SQLException{
