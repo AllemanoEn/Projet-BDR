@@ -460,10 +460,10 @@ $$
 language sql;
 
 -- Permet d'ajouter un commentaire en utilisant le nom d'un utilisateur
-CREATE PROCEDURE add_comment (new_comment text, pseudo text, nom_boisson text)
+CREATE PROCEDURE add_comment (new_note int,new_comment text, pseudo text, nom_boisson text)
 AS
 $$
 INSERT INTO commentaire (note, comment, commentby, numeroboisson)
-                 values (1,new_comment,pseudo,(SELECT ID FROM boissons WHERE nom = nom_boisson));
+                 values (new_note,new_comment,pseudo,(SELECT ID FROM boissons WHERE nom = nom_boisson));
 $$
 language sql;
