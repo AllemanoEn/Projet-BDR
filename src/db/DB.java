@@ -231,7 +231,7 @@ public class DB implements IDBAccess {
         preparedStatement.setInt(1,getBoisson(b));
         preparedStatement.setInt(2,idTransaction);
         preparedStatement.setInt(3,quantite);
-        preparedStatement.executeUpdate();
+        preparedStatement.executeUpdate();*/
 
     }
 

@@ -1,14 +1,12 @@
 package gui;
 
 import db.Biere;
-import db.Commentaire;
 import db.IDBAccess;
 import db.Utilisateur;
 
 import java.awt.*;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
-import java.sql.Array;
 import java.sql.SQLException;
 
 import javax.swing.*;
@@ -17,7 +15,6 @@ import javax.swing.event.ListSelectionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class MainView extends JFrame {
     private JPanel mainPanel;
@@ -47,7 +44,7 @@ public class MainView extends JFrame {
     private JLabel Biere;
     private JList listSoft;
     private JList listOrientation;
-    private JButton ajouterUnÉvénementButton;
+    private JButton addEventBT;
     private JList listNote;
     private JList listComment;
     private JTextArea commentArea;
@@ -89,6 +86,7 @@ public class MainView extends JFrame {
                             ajouterButton.setEnabled(false);
                         }
 
+                        addEventBT.setEnabled(true);
                         btnAddComment.setEnabled(true);
                     }
                     else {
@@ -161,7 +159,7 @@ public class MainView extends JFrame {
             }
         });
 
-        ajouterUnÉvénementButton.addActionListener(new ActionListener() {
+        addEventBT.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
