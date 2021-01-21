@@ -6,6 +6,8 @@ import db.IDBAccess;
 import db.Utilisateur;
 
 import java.awt.*;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.sql.Array;
 import java.sql.SQLException;
 
@@ -51,6 +53,7 @@ public class MainView extends JFrame {
     private JTextArea commentArea;
     private JButton btnAddComment;
     private JComboBox cbNote;
+    private JList nbBiereBuesList;
     private AdminPanel displayAddPopUp;
 
     private Utilisateur u;
@@ -84,6 +87,8 @@ public class MainView extends JFrame {
                         }else {
                             ajouterButton.setEnabled(false);
                         }
+
+                        btnAddComment.setEnabled(true);
                     }
                     else {
                         label_status.setForeground( new Color(255,0,0));
@@ -107,7 +112,20 @@ public class MainView extends JFrame {
         });
 
         listSoft.setListData(idbAccess.getSoftDrinks());
-        listOrientation.setListData(idbAccess.getOrientationLeaderboard());
+
+
+        String[] res = idbAccess.getOrientationLeaderboard();
+        String[] orientation = new String[res.length];
+        String[] nbBieresBues = new String[res.length];
+        int i = 0;
+        for(String str : res) {
+            String[] vals = str.split(",");
+            orientation[i] = vals[0];
+            nbBieresBues[i] = vals[1];
+            i++;
+        }
+        listOrientation.setListData(orientation);
+        nbBiereBuesList.setListData(nbBieresBues);
 
         beerLB.setCellRenderer(new BiereListRenderer());
 
@@ -175,11 +193,29 @@ public class MainView extends JFrame {
                 try {
                     idbAccess.addComment(note, comment, u, name);
                     listComment.setListData(idbAccess.getComments(name));   // maj comment
+
+                    commentArea.setText("");
+                    cbNote.setSelectedIndex(0);
+
                 } catch (SQLException throwables) {
                     throwables.printStackTrace();
                 }
+            }
+        });
+        utilisateurTextField.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                super.focusGained(e);
 
+                utilisateurTextField.setText("");
+            }
+        });
+        mdpPasswordField.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                super.focusGained(e);
 
+                mdpPasswordField.setText("");
             }
         });
     }
