@@ -287,6 +287,12 @@ public class DB implements IDBAccess {
 
     }
 
+    @Override
+    public Commentaire[] getComments(String drinkName) throws SQLException {
+
+        // TODO
+        return new Commentaire[0];
+    }
 }
 
 

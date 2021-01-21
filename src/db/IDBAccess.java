@@ -23,6 +23,8 @@ public interface IDBAccess {
 
     void addComment(int note, String commentBy,Utilisateur user, int boisson) throws SQLException;
 
+    Commentaire[] getComments(String drinkName) throws SQLException;
+
     String[] getOrientationLeaderboard() throws SQLException;
 
     boolean createEvent(String nom, Timestamp date, Boisson boisson, int quantite, int table) throws SQLException;
