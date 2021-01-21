@@ -156,23 +156,37 @@ insert into orientation (nom)
 insert into orientation (nom)
             values ('COMEM');
 
+insert into orientation (nom)
+            values ('EC+G');
+
+
 -- Insertion des utilisateurs dans la table utilisateurs
-insert into utilisateur values ('xxx_DarkYohann_xxx','a@hotmail.com','mypassword',(SELECT id FROM orientation where nom = 'TIC'),true);
-insert into utilisateur values ('xxx_DarkEnzo_xxx','b@hotmail.com','mypassword',(SELECT id FROM orientation where nom = 'TIC'),true);
-insert into utilisateur values ('xxx_DarkMelvin_xxx','c@hotmail.com','mypassword',(SELECT id FROM orientation where nom = 'TIC'),true);
-insert into utilisateur values ('Paul','d@hotmail.com','mypassword',(SELECT id FROM orientation where nom = 'TIN'),false);
-insert into utilisateur values ('Marie','e@hotmail.com','mypassword',(SELECT id FROM orientation where nom = 'COMEM'),false);
-insert into utilisateur values ('Frank','f@hotmail.com','mypassword',(SELECT id FROM orientation where nom = 'COMEM'),false);
+insert into utilisateur values ('Jean','a@hotmail.com','mypassword',(SELECT id FROM orientation where nom = 'TIC'),true);
+insert into utilisateur values ('Sebastien','b@hotmail.com','mypassword',(SELECT id FROM orientation where nom = 'TIC'),true);
+insert into utilisateur values ('Marie','c@hotmail.com','mypassword',(SELECT id FROM orientation where nom = 'TIN'),false);
+insert into utilisateur values ('Marc','d@hotmail.com','mypassword',(SELECT id FROM orientation where nom = 'EC+G'),true);
+insert into utilisateur values ('Paul','e@hotmail.com','mypassword',(SELECT id FROM orientation where nom = 'TIN'),false);
+insert into utilisateur values ('Louise','f@hotmail.com','mypassword',(SELECT id FROM orientation where nom = 'COMEM'),false);
+insert into utilisateur values ('Frank','g@hotmail.com','mypassword',(SELECT id FROM orientation where nom = 'COMEM'),false);
+insert into utilisateur values ('Louis','h@hotmail.com','mypassword',(SELECT id FROM orientation where nom = 'TIC'),false);
+insert into utilisateur values ('James','i@hotmail.com','mypassword',(SELECT id FROM orientation where nom = 'COMEM'),false);
+insert into utilisateur values ('Nathalie','j@hotmail.com','mypassword',(SELECT id FROM orientation where nom = 'EC+G'),false);
 
 -- Insertion des evenement dans la table evenement
-insert into evenement (nom, date, organisateur) values ('Apero TIC','20201126','xxx_DarkYohann_xxx');
-insert into evenement (nom, date, organisateur) values ('Apero TIN','20200926','xxx_DarkEnzo_xxx');
-insert into evenement (nom, date, organisateur) values ('Apero COMEM','20200226','Marie');
-insert into evenement (nom, date, organisateur) values ('Fondue TIC','20200526','xxx_DarkEnzo_xxx');
+insert into evenement (nom, date, organisateur) values ('Apero TIC','20201126','Jean');
+insert into evenement (nom, date, organisateur) values ('Apero TIN','20200926','Marie');
+insert into evenement (nom, date, organisateur) values ('Apero COMEM','20200226','Frank');
+insert into evenement (nom, date, organisateur) values ('Fondue TIC','20200526','Sebastien');
 
 -- Insertion dans la table associative
 insert into table_event values (1,(select id from evenement where nom = 'Apero TIC'));
+insert into table_event values (2,(select id from evenement where nom = 'Apero TIC'));
+insert into table_event values (3,(select id from evenement where nom = 'Apero TIC'));
+insert into table_event values (4,(select id from evenement where nom = 'Apero TIC'));
 insert into table_event values (10,(select id from evenement where nom = 'Fondue TIC'));
+insert into table_event values (5,(select id from evenement where nom = 'Fondue TIC'));
+insert into table_event values (7,(select id from evenement where nom = 'Fondue TIC'));
+insert into table_event values (4,(select id from evenement where nom = 'Fondue TIC'));
 
 -- Insertion dans la table type
 insert into type values (1,'Soft');
@@ -191,7 +205,7 @@ insert into boissons (nom, type, quantitestock, prixvente, prixachat) values ('B
 insert into boissons (nom, type, quantitestock, prixvente, prixachat) values ('BFM',2,1000,3,2);
 insert into boissons (nom, type, quantitestock, prixvente, prixachat) values ('Cuvee',2,1000,3,2);
 insert into boissons (nom, type, quantitestock, prixvente, prixachat) values ('Feldschlosschen',2,1000,3,2);
-insert into boissons (nom, type, quantitestock, prixvente, prixachat) values ('Prix Garanti',2,1000,3,2);
+insert into boissons (nom, type, quantitestock, prixvente, prixachat) values ('PG',2,1000,3,2);
 insert into boissons (nom, type, quantitestock, prixvente, prixachat) values ('Farmer',2,1000,3,2);
 insert into boissons (nom, type, quantitestock, prixvente, prixachat) values ('Chimay',2,1000,3,2);
 insert into boissons (nom, type, quantitestock, prixvente, prixachat) values ('Delirium',2,1000,3,2);
@@ -208,14 +222,16 @@ insert into reservation values ((select id from boissons where nom = 'Club Mate'
 insert into provenance (pays, region, brasserie) values ('Suisse','Yverdon','Boxer Brasserie');
 insert into provenance (pays, region, brasserie) values ('Suisse','Jura','BFM Brasserie');
 insert into provenance (pays, region, brasserie) values ('Suisse','Landi','Landie Brasserie');
-insert into provenance (pays, region, brasserie) values ('Belgique','on c pa','Abbaye');
-insert into provenance (pays, region, brasserie) values ('Allemagne','on c pa','Universal Brasserie');
+insert into provenance (pays, region, brasserie) values ('Belgique','Europe','Abbaye');
+insert into provenance (pays, region, brasserie) values ('Allemagne','Europa Park','Universal Brasserie');
 
 -- Insertion des styles dans la table styles
 insert into style (nom) values ('IPA');
 insert into style (nom) values ('Blanche');
 insert into style (nom) values ('Blonde');
 insert into style (nom) values ('Ambree');
+insert into style (nom) values ('Rousse');
+insert into style (nom) values ('Stout');
 
 -- Insertion des alcools dans la table alcool
 insert into alcool (pourcentage, contenance, notemoyenne, provenance, style, boisson)
@@ -267,23 +283,32 @@ insert into alcool (pourcentage, contenance, notemoyenne, provenance, style, boi
 -- Insertion des commentaires dans la table commentaire
 insert into commentaire (note, comment, commentby, numeroboisson)
                  values (4,'Mon dieu cest trop cool',
-                         'xxx_DarkEnzo_xxx',2);
+                         'Paul',2);
+insert into commentaire (note, comment, commentby, numeroboisson)
+                 values (4,'Très bon',
+                         'Marie',4);
+insert into commentaire (note, comment, commentby, numeroboisson)
+                 values (1,'Immonde',
+                         'Sebastien',4);
+insert into commentaire (note, comment, commentby, numeroboisson)
+                 values (3,'On a vu mieux, on a vu pire',
+                         'Marc',2);
 insert into commentaire (note, comment, commentby, numeroboisson)
                  values (1,'cé pa bon',
-                         'xxx_DarkYohann_xxx',3);
+                         'Nathalie',3);
 
 -- Insertion des transactions dans la table transaction
 insert into transaction (addition, date, by)
             values (9,'20200305',
-                    (select pseudo from utilisateur where pseudo = 'xxx_DarkMelvin_xxx'));
+                    (select pseudo from utilisateur where pseudo = 'Nathalie'));
 
 insert into transaction (addition, date, by)
             values (3,'20200605',
-                    (select pseudo from utilisateur where pseudo = 'xxx_DarkEnzo_xxx'));
+                    (select pseudo from utilisateur where pseudo = 'Sebastien'));
 
 insert into transaction (addition, date, by)
             values (200,'20200306',
-                    (select pseudo from utilisateur where pseudo = 'Paul'));
+                    (select pseudo from utilisateur where pseudo = 'Louise'));
 
 insert into transaction (addition, date, by)
             values (6,'20200406',
@@ -291,17 +316,17 @@ insert into transaction (addition, date, by)
 
 -- Insertion des boisson_transactions dans la table boisson_transaction
 insert into boisson_transaction (numeroBoisson,numeroTransaction,quantite)
-            values ((select id from boissons where nom = 'Coca'),(select id from transaction where by = 'Paul'),50);
+            values ((select id from boissons where nom = 'Coca'),(select id from transaction where by = 'Nathalie'),50);
 
 
 insert into boisson_transaction (numeroBoisson,numeroTransaction,quantite)
-            values ((select id from boissons where nom = 'Fanta'),(select id from transaction where by = 'Paul'),50);
+            values ((select id from boissons where nom = 'Fanta'),(select id from transaction where by = 'Nathalie'),50);
 
 insert into boisson_transaction (numeroBoisson,numeroTransaction,quantite)
-            values ((select id from boissons where nom = 'BFM'),(select id from transaction where by = 'xxx_DarkEnzo_xxx'),1);
+            values ((select id from boissons where nom = 'BFM'),(select id from transaction where by = 'Sebastien'),1);
 
 insert into boisson_transaction (numeroBoisson,numeroTransaction,quantite)
-            values ((select id from boissons where nom = 'Cuvee'),(select id from transaction where by = 'xxx_DarkMelvin_xxx'),2);
+            values ((select id from boissons where nom = 'Cuvee'),(select id from transaction where by = 'Sebastien'),2);
 
 
 insert into boisson_transaction (numeroBoisson,numeroTransaction,quantite)
@@ -470,4 +495,3 @@ INSERT INTO commentaire (note, comment, commentby, numeroboisson)
 $$
 language sql;
 
-select * from boisson_alcolise
