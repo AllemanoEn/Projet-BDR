@@ -141,6 +141,26 @@ public class AdminPanel extends JFrame {
                         if(tabbedPane1.getSelectedComponent() == addBiereTab) {
                             //mainView.idbAccess.addDrink(tfNomBiere);
                             // TODO addBiere in DB.java
+                            try {
+                                mainView.idbAccess.addBeer(tfNomBiere.getText(),
+                                        2,
+                                        Integer.parseInt(tfQuantiteBiere.getText()),
+                                        Double.parseDouble(tfPrixVenteBiere.getText()),
+                                        Double.parseDouble(tfPrixAchatBiere.getText()),
+                                        Double.parseDouble(tfPourcentageBiere.getText()),
+                                        Double.parseDouble(tfContenanceBiere.getText()),
+                                        tfPaysBiere.getText(),
+                                        tfRegion.getText(),
+                                        tfBrasserie.getText(),
+                                        tfStyleBiere.getText()
+                                        );
+
+                                softList.setListData(mainView.idbAccess.getSoftDrinks());
+                            } catch (SQLException throwables) {
+                                throwables.printStackTrace();
+                            }
+
+
                         }
 
                     }
@@ -235,5 +255,9 @@ public class AdminPanel extends JFrame {
         tfPourcentageBiere.setEnabled(true);
         tfRegion.setEnabled(true);
         tfNomBiere.setEnabled(true);
+    }
+
+    private void createUIComponents() {
+        // TODO: place custom component creation code here
     }
 }

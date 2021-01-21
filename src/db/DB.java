@@ -184,8 +184,56 @@ public class DB implements IDBAccess {
         }
     }
 
+    public void addBeer(String name, int type, int quantite, double prixvente, double prixachat, double pourcentage,
+                        double contenance, String pays, String region, String brasserie, String style) throws SQLException {
+        addDrink(name, type, quantite, prixvente, prixachat);
+        int idBoisson = getBoisson(name);
+        int idProvenance = 0;
+        int idStyle = 0;
 
-    @Override
+        PreparedStatement preparedStatement = connection.prepareStatement("SELECT id FROM provenance WHERE pays = ? AND region = ? AND brasserie = ? ");
+        preparedStatement.setString(1,pays);
+        preparedStatement.setString(2,region);
+        preparedStatement.setString(3,brasserie);
+
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        if (resultSet.next()){
+            idProvenance = resultSet.getInt(1);
+        }
+        else{
+            PreparedStatement preparedStatement1 = connection.prepareStatement("INSERT INTO provenance (pays,region,brasserie) VALUES (?,?,?)");
+            preparedStatement1.setString(1,pays);
+            preparedStatement1.setString(2,region);
+            preparedStatement1.setString(3,brasserie);
+
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()){
+                idProvenance = resultSet.getInt(1);
+            }
+        }
+
+        if (getStyle(style) == 0){
+            preparedStatement = connection.prepareStatement("INSERT INTO style (nom) VALUES (?)");
+            preparedStatement.setString(1,style);
+            preparedStatement.executeUpdate();
+        }
+
+        idStyle = getStyle(style);
+
+        preparedStatement = connection.prepareStatement("INSERT INTO alcool (pourcentage,contenance,notemoyenne,provenance,style,boisson) VALUES (?,?,?,?,?,?)");
+        preparedStatement.setDouble(1,pourcentage);
+        preparedStatement.setDouble(2,contenance);
+        preparedStatement.setDouble(3,0);
+        preparedStatement.setInt(4,idProvenance);
+        preparedStatement.setInt(5,idStyle);
+        preparedStatement.setInt(6,idBoisson);
+        preparedStatement.executeUpdate();
+
+    }
+
+
+        @Override
     public Boisson getDrink(String name) throws SQLException {
 
         Boisson boisson = null;
@@ -327,6 +375,29 @@ public class DB implements IDBAccess {
         }
 
     }
+
+
+    @Override
+    public int getStyle(String name) throws SQLException {
+        PreparedStatement preparedStatement = connection.prepareStatement("SELECT id FROM style WHERE nom = ?");
+        preparedStatement.setString(1,name);
+
+        try{
+            ResultSet resultSet = preparedStatement.executeQuery();
+            preparedStatement.clearParameters();
+            if(resultSet.next()){
+                return resultSet.getInt(1);
+            }
+            return 0;
+        }
+
+        catch (SQLException e){
+            throw e;
+        }
+
+    }
+
+
 
     @Override
     public Commentaire[] getComments(String drinkName) throws SQLException {
