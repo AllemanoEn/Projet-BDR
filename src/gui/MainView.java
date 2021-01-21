@@ -1,6 +1,7 @@
 package gui;
 
 import db.Biere;
+import db.Commentaire;
 import db.IDBAccess;
 import db.Utilisateur;
 
@@ -149,6 +150,10 @@ public class MainView extends JFrame {
         });
 
         listComment.setCellRenderer(new CommentListRenderer());
+
+        Commentaire com = new Commentaire("Yo", "de la chgie", 3);
+        Commentaire com2 = new Commentaire("Yo2323", "de la big mega  chie comme ce projet et cette appli ultra naze", 1    );
+        listComment.setListData(new Commentaire[]{com, com2});
         //listComment.setListData(idbAccess.getComments(bierename)); // TODO
     }
 }
