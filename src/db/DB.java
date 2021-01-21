@@ -49,14 +49,16 @@ public class DB implements IDBAccess {
     @Override
     public boolean login(Utilisateur utilisateur) throws SQLException {
 
-        PreparedStatement preparedStatement = connection.prepareStatement("SELECT count(pseudo) FROM utilisateur WHERE pseudo = ? AND password = ? AND admin = ?;");
+        PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM utilisateur WHERE pseudo = ? AND password = ?;");
         preparedStatement.setString(1,utilisateur.getPseudo());
         preparedStatement.setString(2,utilisateur.getPassword());
-        preparedStatement.setBoolean(3,utilisateur.isAdmin());
         ResultSet resultSet = preparedStatement.executeQuery();
         boolean exist = false;
         while (resultSet.next()) {
-             exist = resultSet.getBoolean(1);
+            utilisateur.setAdmin(resultSet.getBoolean(5));
+            utilisateur.setOrientation(resultSet.getString(4));
+
+
         }
         if (exist) {
             return true;

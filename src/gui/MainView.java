@@ -69,7 +69,7 @@ public class MainView extends JFrame {
             public void actionPerformed(ActionEvent e) {
 
                 // TODO tmp admin
-                u = new Utilisateur(utilisateurTextField.getText(), mdpPasswordField.getText(), true);
+                u = new Utilisateur(utilisateurTextField.getText(), mdpPasswordField.getText());
 
                 try {
                     if(idbAccess.login(u)){

@@ -2,7 +2,9 @@ package db;
 public class Utilisateur {
 
     private String pseudo;
+    private String email;
     private String password;
+    private String orientation;
     boolean admin;
 
     public Utilisateur(String pseudo, String password, boolean admin){
@@ -28,5 +30,17 @@ public class Utilisateur {
 
     public boolean isAdmin() {
         return admin;
+    }
+
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
+    }
+
+    public void setOrientation(String orientation) {
+        this.orientation = orientation;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
