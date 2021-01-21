@@ -105,35 +105,94 @@ public interface IDBAccess {
      */
     void updateDrink(String drinkName, int quantite, double prixVente, double prixAchat) throws SQLException;
 
+    /**
+     * Permet de mettre à jour une bière
+     * @param drinkName nom de la bière
+     * @param quantite quantité de la bière
+     * @param prixVente prix de vente de la bière
+     * @param prixAchat prix d'achat de la bière
+     * @param contenance contenance de la bière
+     * @param pourcentage pourcentage de la bière
+     * @throws SQLException
+     */
     void updateBeer(String drinkName, int quantite, double prixVente, double prixAchat, double contenance, double pourcentage) throws SQLException;
 
+    /**
+     * Permet de récupérer toutes les bières
+     * @return  une tableau de de bières
+     * @throws SQLException
+     */
     Biere[] getBeers() throws SQLException;
 
+    /**
+     * Permet de récupérer toutes les boissons non-alcoolisées
+     * @return un tableau de boisson
+     * @throws SQLException
+     */
     Boisson[] getSoftDrinks() throws SQLException;
 
+    /**
+     * Permet de récupérer toutes les boissons
+     * @return une liste de String contenant tout les noms des boissons
+     * @throws SQLException
+     */
     String[] getAllBoissons() throws SQLException;
 
+    /**
+     * Permet de récupérer l'id du boisson
+     * @param name Nom de la boisson
+     * @return l'id de la boisson
+     * @throws SQLException
+     */
     int getBoisson(String name) throws SQLException;
 
-    int getStyle(String name) throws SQLException;
+    /**
+     * Permet de récupérer l'id d'un type de boisson
+     * @param name type concerné
+     * @return l'id du type
+     * @throws SQLException
+     */
+    int getType(String name) throws SQLException;
 
     //Comment function
 
     void addComment(int note, String commentBy, Utilisateur user, String drinkName) throws SQLException;
 
+    /**
+     * Permet de récuper tout les commentaires d'une boisson
+     * @param drinkName Boisson qui concerne les commentaires
+     * @return Un tableau de commenatire
+     * @throws SQLException
+     */
     Commentaire[] getComments(String drinkName) throws SQLException;
 
     //Event function
 
+    /**
+     * Permet de créer un event
+     * @param nom nom de l'event
+     * @param date date de l'event
+     * @param boisson Boisson de l'event
+     * @param quantite Quantité de boisson
+     * @param table Table reservé par l'event
+     * @return true si la commande SQL c'est bien déroulé
+     * @throws SQLException
+     */
     boolean createEvent(String nom, Timestamp date, Boisson boisson, int quantite, int table) throws SQLException;
 
+    /**
+     * Retourne l'id d'un event
+     * @param name Event à identifier
+     * @return l'id de l'event identifier
+     * @throws SQLException
+     */
     int getEvent(String name) throws SQLException;
 
     //Orientation function
 
     /**
-     * Retourne toutes
-     * @return
+     * Retourne toutesles orientations
+     * @return Un tableau de string avec le nom des orientations
      * @throws SQLException
      */
     String[] getOrientation() throws SQLException;

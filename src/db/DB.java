@@ -283,13 +283,13 @@ public class DB implements IDBAccess {
             }
         }
 
-        if (getStyle(style) == 0){
+        if (getType(style) == 0){
             preparedStatement = connection.prepareStatement("INSERT INTO style (nom) VALUES (?)");
             preparedStatement.setString(1,style);
             preparedStatement.executeUpdate();
         }
 
-        idStyle = getStyle(style);
+        idStyle = getType(style);
 
         preparedStatement = connection.prepareStatement("INSERT INTO alcool (pourcentage,contenance,notemoyenne,provenance,style,boisson) VALUES (?,?,?,?,?,?)");
         preparedStatement.setDouble(1,pourcentage);
@@ -474,7 +474,7 @@ public class DB implements IDBAccess {
 
 
     @Override
-    public int getStyle(String name) throws SQLException {
+    public int getType(String name) throws SQLException {
         PreparedStatement preparedStatement = connection.prepareStatement("SELECT id FROM style WHERE nom = ?");
         preparedStatement.setString(1,name);
 
