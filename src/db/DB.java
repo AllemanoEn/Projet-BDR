@@ -231,7 +231,7 @@ public class DB implements IDBAccess {
         preparedStatement.setInt(1,getBoisson(b));
         preparedStatement.setInt(2,idTransaction);
         preparedStatement.setInt(3,quantite);
-        preparedStatement.executeUpdate();*/
+        preparedStatement.executeUpdate();
 
     }
 
@@ -253,6 +253,7 @@ public class DB implements IDBAccess {
         }
     }
 
+    @Override
     public void addBeer(String name, int type, int quantite, double prixvente, double prixachat, double pourcentage,
                         double contenance, String pays, String region, String brasserie, String style) throws SQLException {
         addDrink(name, type, quantite, prixvente, prixachat);
@@ -301,8 +302,7 @@ public class DB implements IDBAccess {
 
     }
 
-
-        @Override
+    @Override
     public Boisson getDrink(String name) throws SQLException {
 
         Boisson boisson = null;
