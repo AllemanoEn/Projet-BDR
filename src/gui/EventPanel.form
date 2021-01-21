@@ -39,7 +39,16 @@
                     </constraints>
                     <properties/>
                     <border type="none"/>
-                    <children/>
+                    <children>
+                      <component id="5d99c" class="javax.swing.JTextField" binding="EventSuccess">
+                        <constraints/>
+                        <properties>
+                          <foreground color="-15090935"/>
+                          <horizontalAlignment value="0"/>
+                          <text value="Evenement enregistré !"/>
+                        </properties>
+                      </component>
+                    </children>
                   </scrollpane>
                   <component id="47e72" class="javax.swing.JButton">
                     <constraints>

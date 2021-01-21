@@ -21,6 +21,7 @@ public class EventPanel extends JFrame{
     private JList listTable;
     private JButton Verify;
     private JTextField numTable;
+    private JTextField EventSuccess;
     Timestamp oui;
 
     public EventPanel(MainView mainView) {
@@ -28,6 +29,7 @@ public class EventPanel extends JFrame{
         setSize(800, 600);
         setContentPane(panel1main);
         setVisible(true);
+        EventSuccess.setVisible(false);
 
 
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -53,6 +55,12 @@ public class EventPanel extends JFrame{
 
                 try {
                     mainView.idbAccess.createEvent(eventName,oui,boisson, eventNumBoisson, eventNumTable);
+                    date.setText("");
+                    nom.setText("");
+                    numTable.setText("");
+                    boissonQuantite.setText("");
+                    EventSuccess.setVisible(true);
+
                 } catch (SQLException throwables) {
                     throwables.printStackTrace();
                 }
