@@ -276,11 +276,28 @@ public class DB implements IDBAccess {
     }
 
     public void updateDrink(String drinkName, int quantite, double prixVente, double prixAchat) throws SQLException{
+        int idBoisson = getBoisson(drinkName);
+
+        PreparedStatement preparedStatement = connection.prepareStatement("update boissons\n" +
+                "set quantitestock = ?, prixvente = ?, prixachat = ? \n" +
+                "where id = ?;");
+        preparedStatement.setInt(1,quantite);
+        preparedStatement.setDouble(2,prixVente);
+        preparedStatement.setDouble(3,prixAchat);
+        preparedStatement.setDouble(3,idBoisson);
+        preparedStatement.executeUpdate();
 
     }
 
     public void updateBeer(String drinkName, int quantite, double prixVente, double prixAchat, double contenance, double pourcentage) throws SQLException{
     updateDrink(drinkName, quantite, prixVente, prixAchat);
+
+        PreparedStatement preparedStatement = connection.prepareStatement("update alcool\n" +
+                "set contenance = ?, pourcentage = ?\n" +
+                "where boisson = ?;");
+        preparedStatement.setDouble(2,contenance);
+        preparedStatement.setDouble(3,pourcentage);
+        preparedStatement.executeUpdate();
     }
 
 
