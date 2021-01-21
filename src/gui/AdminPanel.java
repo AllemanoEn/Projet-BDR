@@ -204,6 +204,8 @@ public class AdminPanel extends JFrame {
                             rbIsAdmin.isChecked());
 
                     softList.setListData(mainView.idbAccess.getSoftDrinks());
+
+                    utilisateurList.setListData(mainView.idbAccess.getUsers());
                 } catch (SQLException throwables) {
                     throwables.printStackTrace();
                 }
