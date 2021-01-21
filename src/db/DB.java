@@ -27,14 +27,14 @@ public class DB implements IDBAccess {
     }
 
     @Override
-    public boolean createUser(String username, String password, String email, int orientation) throws SQLException {
+    public boolean createUser(String username, String password, String email, int orientation, boolean isAdmin) throws SQLException {
 
         PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO utilisateur VALUES (?,?,?,?,?);");
         preparedStatement.setString(1,username);
         preparedStatement.setString(2,password);
         preparedStatement.setString(3,email);
         preparedStatement.setInt(4,orientation);
-        preparedStatement.setBoolean(5,false);
+        preparedStatement.setBoolean(5,isAdmin);
 
         try{
             preparedStatement.executeUpdate();
@@ -167,14 +167,14 @@ public class DB implements IDBAccess {
     }
 
     @Override
-    public void addDrink(String name, int type, int quantite, int prixvente, int prixachat) throws SQLException{
+    public void addDrink(String name, int type, int quantite, double prixvente, double prixachat) throws SQLException{
 
         PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO boissons (nom, type, quantitestock, prixvente, prixachat) VALUES (?,?,?,?,?);");
         preparedStatement.setString(1,name);
         preparedStatement.setInt(2,type);
         preparedStatement.setInt(3,quantite);
-        preparedStatement.setInt(4,prixvente);
-        preparedStatement.setInt(5,prixachat);
+        preparedStatement.setDouble(4,prixvente);
+        preparedStatement.setDouble(5,prixachat);
 
         try{
             preparedStatement.executeUpdate();

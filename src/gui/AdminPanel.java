@@ -50,6 +50,7 @@ public class AdminPanel extends JFrame {
     private JTextField tfPseudo;
     private JTextField tfEmail;
     private JTextField tfPassword;
+    private JButton bAddUtilisateur;
 
     public AdminPanel(MainView mainView) {
         super("Admin Panel");
@@ -167,6 +168,44 @@ public class AdminPanel extends JFrame {
                         rbIsAdmin.setSelected(u.isAdmin());
 
                     }
+                }
+            }
+        });
+        ajouterBiereButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+        buttonajouter.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    mainView.idbAccess.addDrink(tfNameSoft.getText(),
+                            1,
+                            Integer.parseInt(tfQuantitySoft.getText()),
+                            Double.parseDouble(tfPrixVenteSoft.getText()),
+                            Double.parseDouble(tfPrixAchatSoft.getText()));
+
+                    softList.setListData(mainView.idbAccess.getSoftDrinks());
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
+            }
+        });
+        bAddUtilisateur.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    mainView.idbAccess.createUser(tfPseudo.getText(),
+                            tfPassword.getText(),
+                            tfEmail.getText(),
+                            cbOrientation.getSelectedIndex(),
+                            rbIsAdmin.isChecked());
+
+                    softList.setListData(mainView.idbAccess.getSoftDrinks());
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
                 }
             }
         });

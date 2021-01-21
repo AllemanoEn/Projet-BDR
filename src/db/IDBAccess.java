@@ -7,11 +7,11 @@ public interface IDBAccess {
 
     void startDB() throws SQLException;
 
-    boolean createUser(String username, String password, String email, int orientation) throws SQLException;
+    boolean createUser(String username, String password, String email, int orientation, boolean isAdmin) throws SQLException;
 
     boolean login(Utilisateur utilisateur) throws SQLException;
 
-    void addDrink(String name, int type, int quantite, int prixvente, int prixachat) throws SQLException;
+    void addDrink(String name, int type, int quantite, double prixvente, double prixachat) throws SQLException;
 
     void deleteDrink(String name) throws SQLException;
 

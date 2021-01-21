@@ -138,6 +138,7 @@ public class MainView extends JFrame {
         for(Biere biere : beers) {
             arrayList.add(String.format("%.1f", biere.getNoteMoyenne()));
         }
+
         listNote.setCellRenderer(new NoteListRenderer());
         listNote.setListData(arrayList.toArray(new String[0]));
 
