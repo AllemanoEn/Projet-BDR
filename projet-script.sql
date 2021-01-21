@@ -425,3 +425,16 @@ where date = dateparam
     );
 $$
 language sql;
+
+-- Permet de récupéré tous les commentaire d'une bière
+CREATE FUNCTION get_all_comment (nombiere text)
+RETURNS TABLE (commentby text, comment text, note int, nom text)
+AS
+$$
+SELECT commentby, comment, note, b.nom
+from commentaire c
+inner join alcool a on a.id = c.numeroboisson
+inner join boissons b on b.id = a.boisson
+WHERE nom = nombiere;
+$$
+language sql;

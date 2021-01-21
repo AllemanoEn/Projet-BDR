@@ -149,6 +149,6 @@ public class MainView extends JFrame {
         });
 
         listComment.setCellRenderer(new CommentListRenderer());
-        //listComment.setListData(idbAccess.getComments(bierename)); // TODO
+        listComment.setListData(idbAccess.getComments("BFM")); // TODO
     }
 }

@@ -290,8 +290,26 @@ public class DB implements IDBAccess {
     @Override
     public Commentaire[] getComments(String drinkName) throws SQLException {
 
-        // TODO
-        return new Commentaire[0];
+        PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM get_all_comment(?)");
+        preparedStatement.setString(1,drinkName);
+
+        ArrayList<Commentaire> arrayList = new ArrayList<>();
+
+
+        try{
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while(resultSet.next()) {
+
+                Commentaire c = new Commentaire(resultSet.getString(1),resultSet.getString(2),resultSet.getInt(3));
+                arrayList.add(c);
+            }
+            return arrayList.toArray(new Commentaire[0]);
+        }
+        catch (SQLException e){
+            throw e;
+        }
+
     }
 }
 
