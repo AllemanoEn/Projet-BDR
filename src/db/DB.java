@@ -4,7 +4,7 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class DB implements IDBAccess {
-    PreparedStatement preparedStatement;
+
     Connection connection;
     Utilisateur utilisateurCourant = null;
 
@@ -29,7 +29,7 @@ public class DB implements IDBAccess {
     @Override
     public boolean createUser(String username, String password, String email, int orientation) throws SQLException {
 
-        preparedStatement = connection.prepareStatement("INSERT INTO utilisateur VALUES (?,?,?,?,?);");
+        PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO utilisateur VALUES (?,?,?,?,?);");
         preparedStatement.setString(1,username);
         preparedStatement.setString(2,password);
         preparedStatement.setString(3,email);
@@ -49,7 +49,7 @@ public class DB implements IDBAccess {
     @Override
     public boolean login(Utilisateur utilisateur) throws SQLException {
 
-        preparedStatement = connection.prepareStatement("SELECT count(pseudo) FROM utilisateur WHERE pseudo = ? AND password = ? AND admin = ?;");
+        PreparedStatement preparedStatement = connection.prepareStatement("SELECT count(pseudo) FROM utilisateur WHERE pseudo = ? AND password = ? AND admin = ?;");
         preparedStatement.setString(1,utilisateur.getPseudo());
         preparedStatement.setString(2,utilisateur.getPassword());
         preparedStatement.setBoolean(3,utilisateur.isAdmin());
@@ -66,7 +66,7 @@ public class DB implements IDBAccess {
 
     @Override
     public Biere[] getBeers() throws SQLException{
-        preparedStatement = connection.prepareStatement("SELECT * FROM boisson_alcolise");
+        PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM boisson_alcolise");
         ArrayList<Biere> arrayList = new ArrayList<>();
 
         try{
@@ -88,7 +88,7 @@ public class DB implements IDBAccess {
 
     @Override
     public Boisson[] getSoftDrinks() throws SQLException{
-        preparedStatement = connection.prepareStatement("SELECT * FROM boisson_non_alcolise");
+        PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM boisson_non_alcolise");
         ArrayList<Boisson> arrayList = new ArrayList<>();
         try{
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -106,7 +106,7 @@ public class DB implements IDBAccess {
     }
 
      public Integer[] getTables(Timestamp date) throws SQLException{
-        preparedStatement = connection.prepareStatement("SELECT * FROM table_libre(?)");
+         PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM table_libre(?)");
         preparedStatement.setObject(1,date);
         ArrayList<Integer> arrayList = new ArrayList<>();
         try{
@@ -129,7 +129,7 @@ public class DB implements IDBAccess {
     @Override
     public void addDrink(String name, int type, int quantite, int prixvente, int prixachat) throws SQLException{
 
-        preparedStatement = connection.prepareStatement("INSERT INTO boissons (nom, type, quantitestock, prixvente, prixachat) VALUES (?,?,?,?,?);");
+        PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO boissons (nom, type, quantitestock, prixvente, prixachat) VALUES (?,?,?,?,?);");
         preparedStatement.setString(1,name);
         preparedStatement.setInt(2,type);
         preparedStatement.setInt(3,quantite);
@@ -172,7 +172,7 @@ public class DB implements IDBAccess {
 
     @Override
     public void addComment(int note, String comment, Utilisateur user, int boisson) throws SQLException {
-        preparedStatement = connection.prepareStatement("INSERT INTO commentaire (nom, type, quantitestock, prixvente, prixachat) VALUES (?,?,?,?);");
+        PreparedStatement  preparedStatement = connection.prepareStatement("INSERT INTO commentaire (nom, type, quantitestock, prixvente, prixachat) VALUES (?,?,?,?);");
         preparedStatement.setInt(1,note);
         preparedStatement.setString(2,comment);
         preparedStatement.setString(3,user.getPseudo());
@@ -189,7 +189,7 @@ public class DB implements IDBAccess {
     @Override
     public String[] getOrientationLeaderboard() throws SQLException {
 
-        preparedStatement = connection.prepareStatement("SELECT * FROM classement_orientation ");
+        PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM classement_orientation ");
 
         ArrayList<String> arrayList = new ArrayList<>();
 
@@ -212,7 +212,7 @@ public class DB implements IDBAccess {
     @Override
     public boolean createEvent(String nom, Timestamp date, Boisson boisson, int quantite, int table) throws SQLException {
 
-        preparedStatement = connection.prepareStatement("INSERT INTO evenement(nom, date, organisateur) VALUES (?,?,?);");
+        PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO evenement(nom, date, organisateur) VALUES (?,?,?);");
 
         preparedStatement.setString(1,nom);
         preparedStatement.setTimestamp(2,date);
@@ -220,7 +220,7 @@ public class DB implements IDBAccess {
 
         try{
             if (preparedStatement.executeUpdate() == 1){
-                preparedStatement.clearBatch();
+                preparedStatement.clearParameters();
 
                 if (boisson != null && quantite > 0 ){
                     preparedStatement = connection.prepareStatement("INSERT INTO reservation VALUES (?,?,?);");
@@ -229,7 +229,7 @@ public class DB implements IDBAccess {
                     preparedStatement.setInt(3,quantite);
                     preparedStatement.executeUpdate();
                 }
-                preparedStatement.clearBatch();
+                preparedStatement.clearParameters();
                 if (table > 0){
                     preparedStatement = connection.prepareStatement("INSERT INTO table_event VALUES (?,?);");
                     preparedStatement.setInt(1,table);
@@ -250,15 +250,16 @@ public class DB implements IDBAccess {
 
     @Override
     public int getEvent(String name) throws SQLException {
-        preparedStatement = connection.prepareStatement("SELECT id FROM evenement WHERE nom = ?");
+        PreparedStatement preparedStatement = connection.prepareStatement("SELECT id FROM evenement WHERE nom = ?");
         preparedStatement.setString(1,name);
-        int i = 0;
+
         try{
             ResultSet resultSet = preparedStatement.executeQuery();
-            while(resultSet.next()) {
-                i = resultSet.getInt(1);
+            preparedStatement.clearParameters();
+            if(resultSet.next()) {
+                return resultSet.getInt(1);
             }
-            return i;
+            return 0;
         }
 
         catch (SQLException e){
@@ -268,15 +269,16 @@ public class DB implements IDBAccess {
     }
     @Override
     public int getBoisson(String name) throws SQLException {
-        preparedStatement = connection.prepareStatement("SELECT id FROM boissons WHERE nom = ?");
+        PreparedStatement preparedStatement = connection.prepareStatement("SELECT id FROM boissons WHERE nom = ?");
         preparedStatement.setString(1,name);
-        int i = 0;
+
         try{
             ResultSet resultSet = preparedStatement.executeQuery();
-            while(resultSet.next()){
-                i = resultSet.getInt(1);
+            preparedStatement.clearParameters();
+            if(resultSet.next()){
+                return resultSet.getInt(1);
             }
-          return i;
+            return 0;
         }
 
         catch (SQLException e){
