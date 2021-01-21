@@ -284,7 +284,7 @@ public class DB implements IDBAccess {
         preparedStatement.setInt(1,quantite);
         preparedStatement.setDouble(2,prixVente);
         preparedStatement.setDouble(3,prixAchat);
-        preparedStatement.setDouble(3,idBoisson);
+        preparedStatement.setDouble(4,idBoisson);
         preparedStatement.executeUpdate();
 
     }
