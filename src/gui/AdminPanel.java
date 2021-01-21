@@ -44,7 +44,7 @@ public class AdminPanel extends JFrame {
     private JScrollPane UserList;
     private JPanel addTransactionTab;
     private JTextField quantiteTF;
-    private JComboBox boissonCB;
+    private JComboBox cbBoisson;
     private JButton ajouterTransaction;
     private JList utilisateurList;
     private JTextField tfPseudo;
@@ -52,7 +52,7 @@ public class AdminPanel extends JFrame {
     private JTextField tfPassword;
     private JButton bAddUtilisateur;
     private JCheckBox isAdmin;
-    private JComboBox utilisateurCB;
+    private JComboBox cbUtilisateur;
 
     public AdminPanel(MainView mainView) {
         super("Admin Panel");
@@ -73,6 +73,18 @@ public class AdminPanel extends JFrame {
             utilisateurList.setListData(mainView.idbAccess.getUsers());
 
             cbOrientation.setModel(new DefaultComboBoxModel<String>(mainView.idbAccess.getOrientation()));
+
+            //Afficher toutes les boissons
+            Boisson[] first = mainView.idbAccess.getSoftDrinks();
+            Boisson[] second = mainView.idbAccess.getBeers();
+            int i = first.length;
+            int j = second.length;
+            int datalength = i+ j;
+            Boisson[] data = new Boisson[datalength];
+
+            System.arraycopy(first,0,data,0,i);
+            System.arraycopy(second,0,data,i,j);
+            //cbBoisson.setModel(data);
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();

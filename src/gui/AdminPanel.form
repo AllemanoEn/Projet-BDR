@@ -560,7 +560,7 @@
                       <text value="Quantité :"/>
                     </properties>
                   </component>
-                  <component id="70522" class="javax.swing.JComboBox" binding="boissonCB">
+                  <component id="70522" class="javax.swing.JComboBox" binding="cbBoisson">
                     <constraints>
                       <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
                     </constraints>
@@ -574,7 +574,7 @@
                       <text value="Utilisateur :"/>
                     </properties>
                   </component>
-                  <component id="72d3a" class="javax.swing.JComboBox" binding="utilisateurCB">
+                  <component id="72d3a" class="javax.swing.JComboBox" binding="cbUtilisateur">
                     <constraints>
                       <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
                     </constraints>
