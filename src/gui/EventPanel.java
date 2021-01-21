@@ -17,9 +17,10 @@ public class EventPanel extends JFrame{
     private JTextField date;
     private JTabbedPane tabbedPane1;
     private JList listBoisson;
-    private JTextField textField1;
+    private JTextField boissonQuantite;
     private JList listTable;
     private JButton Verify;
+    private JTextField numTable;
     Timestamp oui;
 
     public EventPanel(MainView mainView) {
@@ -41,11 +42,17 @@ public class EventPanel extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 String eventDate = date.getText();
                 String eventName = nom.getText();
+                String eventTable = numTable.getText();
+                String eventBoisson = boissonQuantite.getText();
+                int eventNumTable = Integer.parseInt(eventTable);
+                int eventNumBoisson = Integer.parseInt(eventBoisson);
 
                 oui = Timestamp.valueOf(eventDate);
+                Boisson boisson = (Boisson)listBoisson.getSelectedValue();
+
 
                 try {
-                    mainView.idbAccess.createEvent(eventName,oui,null, 0, 0);
+                    mainView.idbAccess.createEvent(eventName,oui,boisson, eventNumBoisson, eventNumTable);
                 } catch (SQLException throwables) {
                     throwables.printStackTrace();
                 }

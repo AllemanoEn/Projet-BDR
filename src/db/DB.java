@@ -220,6 +220,7 @@ public class DB implements IDBAccess {
 
         try{
             if (preparedStatement.executeUpdate() == 1){
+                preparedStatement.clearBatch();
 
                 if (boisson != null && quantite > 0 ){
                     preparedStatement = connection.prepareStatement("INSERT INTO reservation VALUES (?,?,?);");
@@ -228,6 +229,7 @@ public class DB implements IDBAccess {
                     preparedStatement.setInt(3,quantite);
                     preparedStatement.executeUpdate();
                 }
+                preparedStatement.clearBatch();
                 if (table > 0){
                     preparedStatement = connection.prepareStatement("INSERT INTO table_event VALUES (?,?);");
                     preparedStatement.setInt(1,table);
@@ -250,10 +252,13 @@ public class DB implements IDBAccess {
     public int getEvent(String name) throws SQLException {
         preparedStatement = connection.prepareStatement("SELECT id FROM evenement WHERE nom = ?");
         preparedStatement.setString(1,name);
-
+        int i = 0;
         try{
             ResultSet resultSet = preparedStatement.executeQuery();
-            return resultSet.getInt(1);
+            while(resultSet.next()) {
+                i = resultSet.getInt(1);
+            }
+            return i;
         }
 
         catch (SQLException e){
@@ -265,10 +270,13 @@ public class DB implements IDBAccess {
     public int getBoisson(String name) throws SQLException {
         preparedStatement = connection.prepareStatement("SELECT id FROM boissons WHERE nom = ?");
         preparedStatement.setString(1,name);
-
+        int i = 0;
         try{
             ResultSet resultSet = preparedStatement.executeQuery();
-            return resultSet.getInt(1);
+            while(resultSet.next()){
+                i = resultSet.getInt(1);
+            }
+          return i;
         }
 
         catch (SQLException e){
