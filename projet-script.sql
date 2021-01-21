@@ -347,6 +347,13 @@ WHERE ty.nom = 'Alcool'
 GROUP BY o.nom
 ORDER BY nb_biere DESC;
 
+--Retourne une liste de tous les users
+CREATE VIEW list_usr AS
+SELECT u.pseudo, email, password, o.nom orientaiton, admin
+FROM utilisateur u
+INNER JOIN orientation o on u.orientation = o.id
+ORDER BY u.pseudo;
+
 -- triggers --------------------------------------------------------
 -- |
 -- V
@@ -419,9 +426,9 @@ GROUP BY numero
 HAVING numero NOT IN (
     SELECT numero
 FROM "table" t
-inner join table_event te on t.numero = te.numerotable
-inner join evenement e on te.numeroevent= e.id
-where date = dateparam
+INNER JOIN table_event te on t.numero = te.numerotable
+INNER JOIN evenement e on te.numeroevent= e.id
+WHERE DATE = dateparam
     );
 $$
 language sql;
@@ -432,9 +439,9 @@ RETURNS TABLE (commentby text, comment text, note int, nom text)
 AS
 $$
 SELECT commentby, comment, note, b.nom
-from commentaire c
-inner join alcool a on a.id = c.numeroboisson
-inner join boissons b on b.id = a.boisson
+FROM commentaire c
+INNER JOIN alcool a on a.id = c.numeroboisson
+INNER JOIN boissons b on b.id = a.boisson
 WHERE nom = nombiere;
 $$
 language sql;
@@ -445,9 +452,9 @@ CREATE FUNCTION login (usr text, pwd text)
 RETURNS TABLE (pseudo text, email text, password text, orientation text, admin boolean)
 AS
 $$
-select u.pseudo, email, password, o.nom orientaiton, admin
-from utilisateur u
-inner join orientation o on u.orientation = o.id
+SELECT u.pseudo, email, password, o.nom orientaiton, admin
+FROM utilisateur u
+INNER JOIN orientation o on u.orientation = o.id
 WHERE u.pseudo = usr AND password = pwd;
 $$
 language sql;
