@@ -72,10 +72,10 @@ public class MainView extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                // TODO tmp admin
                 u = new Utilisateur(utilisateurTextField.getText(), mdpPasswordField.getText());
 
                 try {
+
                     if(idbAccess.login(u)){
                         label_status.setForeground( new Color(0,255,0));
                         label_status.setText(u.getPseudo() + " est connecté !");
@@ -86,6 +86,8 @@ public class MainView extends JFrame {
                             ajouterButton.setEnabled(false);
                         }
 
+
+                        // Enable buttons if logged in
                         addEventBT.setEnabled(true);
                         btnAddComment.setEnabled(true);
                     }
@@ -110,6 +112,7 @@ public class MainView extends JFrame {
             }
         });
 
+        // List boisson soft
         listSoft.setListData(idbAccess.getSoftDrinks());
 
 
@@ -123,10 +126,12 @@ public class MainView extends JFrame {
             nbBieresBues[i] = vals[1];
             i++;
         }
+        // Classement des orientations
         listOrientation.setListData(orientation);
         nbBiereBuesList.setListData(nbBieresBues);
 
         beerLB.setCellRenderer(new BiereListRenderer());
+
 
         updateNoteBiere();
 
@@ -213,13 +218,14 @@ public class MainView extends JFrame {
         });
     }
 
+
+    // MAJ du classement des bières
     public void updateNoteBiere() throws SQLException{
         beerLB.setCellRenderer(new BiereListRenderer());
 
         Biere[] beers = idbAccess.getBeers();
         beerLB.setListData(beers);
 
-        String[] str = new String[beers.length];
         ArrayList<String> arrayList = new ArrayList<>();
         for(Biere biere : beers) {
             arrayList.add(String.format("%.1f", biere.getNoteMoyenne()));
