@@ -438,4 +438,16 @@ inner join boissons b on b.id = a.boisson
 WHERE nom = nombiere;
 $$
 language sql;
---heho
+
+
+-- Permet de vérifier si un user existe
+CREATE FUNCTION login (usr text, pwd text)
+RETURNS TABLE (pseudo text, email text, password text, orientation text, admin boolean)
+AS
+$$
+select u.pseudo, email, password, o.nom orientaiton, admin
+from utilisateur u
+inner join orientation o on u.orientation = o.id
+WHERE u.pseudo = usr AND password = pwd;
+$$
+language sql;

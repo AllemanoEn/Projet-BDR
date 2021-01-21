@@ -76,11 +76,11 @@ public class MainView extends JFrame {
                         label_status.setForeground( new Color(0,255,0));
                         label_status.setText(u.getPseudo() + " est connecté !");
                         idbAccess.setUser(u);
-                        /*if (u.isAdmin()){
+                        if (u.isAdmin()){
                             ajouterButton.setEnabled(true);
                         }else {
                             ajouterButton.setEnabled(false);
-                        }*/
+                        }
                     }
                     else {
                         label_status.setForeground( new Color(255,0,0));
