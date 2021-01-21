@@ -13,6 +13,9 @@ public interface IDBAccess {
 
     void addDrink(String name, int type, int quantite, int prixvente, int prixachat) throws SQLException;
 
+
+    public void deleteDrink(String name) throws SQLException;
+
     Boisson getDrink(String name) throws SQLException;
 
     Biere[] getBeers() throws SQLException;
