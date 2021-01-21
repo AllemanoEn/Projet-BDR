@@ -458,3 +458,12 @@ INNER JOIN orientation o on u.orientation = o.id
 WHERE u.pseudo = usr AND password = pwd;
 $$
 language sql;
+
+-- Permet d'ajouter un commentaire en utilisant le nom d'un utilisateur
+CREATE PROCEDURE add_comment (new_comment text, pseudo text, nom_boisson text)
+AS
+$$
+INSERT INTO commentaire (note, comment, commentby, numeroboisson)
+                 values (1,new_comment,pseudo,(SELECT ID FROM boissons WHERE nom = nom_boisson));
+$$
+language sql;
