@@ -205,7 +205,7 @@ public class DB implements IDBAccess {
         callableStatement.setString(4,drinkName);
 
         try{
-            callableStatement.executeQuery();
+            callableStatement.executeUpdate();
         }
         catch (SQLException e){
             throw e;
