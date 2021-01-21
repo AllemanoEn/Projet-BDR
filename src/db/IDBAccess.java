@@ -22,6 +22,8 @@ public interface IDBAccess {
 
     Boisson[] getSoftDrinks() throws SQLException;
 
+    String[] getAllBoissons() throws SQLException;
+
     Integer[] getTables(Timestamp date) throws SQLException;
 
     void addComment(int note, String commentBy, Utilisateur user, String drinkName) throws SQLException;
@@ -45,9 +47,11 @@ public interface IDBAccess {
 
     Utilisateur[] getUsers() throws SQLException;
 
+    String[] getAllUsers() throws SQLException;
+
     String[] getOrientation() throws SQLException;
 
-    void addTransaction(Utilisateur u, Boisson b, int quantite) throws SQLException;
+    void addTransaction(String u, String b, int quantite) throws SQLException;
 
     boolean isConnected();
 

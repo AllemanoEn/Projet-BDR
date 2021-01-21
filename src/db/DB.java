@@ -113,6 +113,39 @@ public class DB implements IDBAccess {
     }
 
     @Override
+    public String[] getAllBoissons() throws SQLException{
+        PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM boissons");
+        ArrayList<String> arrayList = new ArrayList<>();
+        try{
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while(resultSet.next()) {
+                arrayList.add(new String(resultSet.getString(2)));
+            }
+            return arrayList.toArray(new String[0]);
+        }
+        catch (SQLException e){
+            throw e;
+        }
+    }
+
+    public String[] getAllUsers() throws SQLException{
+        PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM utilisateur");
+        ArrayList<String> arrayList = new ArrayList<>();
+        try{
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while(resultSet.next()) {
+                arrayList.add(new String(resultSet.getString(1)));
+            }
+            return arrayList.toArray(new String[0]);
+        }
+        catch (SQLException e){
+            throw e;
+        }
+    }
+
+    @Override
     public Boisson[] getSoftDrinks() throws SQLException{
         PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM boisson_non_alcolise");
         ArrayList<Boisson> arrayList = new ArrayList<>();
@@ -167,7 +200,7 @@ public class DB implements IDBAccess {
     }
 
     @Override
-    public void addTransaction(Utilisateur u, Boisson b, int quantite) throws SQLException {
+    public void addTransaction(String u, String b, int quantite) throws SQLException {
 
         double prix = b.getPrixVente() * quantite;
         int idTransaction = 0;

@@ -73,18 +73,8 @@ public class AdminPanel extends JFrame {
             utilisateurList.setListData(mainView.idbAccess.getUsers());
 
             cbOrientation.setModel(new DefaultComboBoxModel<String>(mainView.idbAccess.getOrientation()));
-
-            //Afficher toutes les boissons
-            Boisson[] first = mainView.idbAccess.getSoftDrinks();
-            Boisson[] second = mainView.idbAccess.getBeers();
-            int i = first.length;
-            int j = second.length;
-            int datalength = i+ j;
-            Boisson[] data = new Boisson[datalength];
-
-            System.arraycopy(first,0,data,0,i);
-            System.arraycopy(second,0,data,i,j);
-            //cbBoisson.setModel(data);
+            cbBoisson.setModel(new DefaultComboBoxModel<String>(mainView.idbAccess.getAllBoissons()));
+            cbUtilisateur.setModel(new DefaultComboBoxModel<String>(mainView.idbAccess.getAllUsers()));
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -261,6 +251,16 @@ public class AdminPanel extends JFrame {
                 try {
                     mainView.idbAccess.updateDrink(tfNameSoft.getText(), Integer.parseInt(tfQuantitySoft.getText()),
                             Double.parseDouble(tfPrixVenteSoft.getText()), Double.parseDouble(tfPrixAchatSoft.getText()));
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
+            }
+        });
+        ajouterTransaction.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    mainView.idbAccess.addTransaction(cbUtilisateur.getSelectedItem().toString(),cbBoisson.getSelectedItem().toString(),Integer.parseInt(quantiteTF.getText()));
                 } catch (SQLException throwables) {
                     throwables.printStackTrace();
                 }
