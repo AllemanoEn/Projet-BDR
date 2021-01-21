@@ -1,6 +1,7 @@
 package gui;
 
 import db.Biere;
+import db.Commentaire;
 import db.IDBAccess;
 import db.Utilisateur;
 
