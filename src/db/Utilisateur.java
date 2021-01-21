@@ -27,6 +27,13 @@ public class Utilisateur {
         return password;
     }
 
+    public String getOrientation() {
+        return orientation;
+    }
+
+    public String getEmail() {
+        return email;
+    }
 
     public boolean isAdmin() {
         return admin;
