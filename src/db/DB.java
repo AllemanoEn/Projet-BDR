@@ -184,21 +184,6 @@ public class DB implements IDBAccess {
         }
     }
 
-    public void deleteDrink(String name) throws SQLException{
-
-        PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM boissons where nom = ?;");
-        preparedStatement.setString(1,name);
-
-        try{
-            preparedStatement.executeUpdate();
-        }
-        catch (SQLException e){
-            throw e;
-        }
-    }
-
-
-
 
     @Override
     public Boisson getDrink(String name) throws SQLException {
