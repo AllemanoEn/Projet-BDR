@@ -54,6 +54,7 @@ public class MainView extends JFrame {
     private JButton btnAddComment;
     private JComboBox cbNote;
     private JList nbBiereBuesList;
+    private JLabel labelNbStock;
     private AdminPanel displayAddPopUp;
 
     private Utilisateur u;
@@ -135,7 +136,7 @@ public class MainView extends JFrame {
         String[] str = new String[beers.length];
         ArrayList<String> arrayList = new ArrayList<>();
         for(Biere biere : beers) {
-            arrayList.add("" + biere.getNoteMoyenne());
+            arrayList.add(String.format("%.1f", biere.getNoteMoyenne()));
         }
         listNote.setCellRenderer(new NoteListRenderer());
         listNote.setListData(arrayList.toArray(new String[0]));
@@ -156,6 +157,7 @@ public class MainView extends JFrame {
                         beerPercentage.setText("" + biere.getPourcentage());
                         beerQuantity.setText("" + biere.getContenance());
                         beerRegion.setText(biere.getRegion());
+                        labelNbStock.setText("" + biere.getQuantiteStock());
 
                         try {
                             listComment.setCellRenderer(new CommentListRenderer());
