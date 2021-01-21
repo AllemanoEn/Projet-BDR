@@ -291,12 +291,13 @@ public class DB implements IDBAccess {
 
     public void updateBeer(String drinkName, int quantite, double prixVente, double prixAchat, double contenance, double pourcentage) throws SQLException{
     updateDrink(drinkName, quantite, prixVente, prixAchat);
-
+        int idBoisson = getBoisson(drinkName);
         PreparedStatement preparedStatement = connection.prepareStatement("update alcool\n" +
                 "set contenance = ?, pourcentage = ?\n" +
                 "where boisson = ?;");
-        preparedStatement.setDouble(2,contenance);
-        preparedStatement.setDouble(3,pourcentage);
+        preparedStatement.setDouble(1,contenance);
+        preparedStatement.setDouble(2,pourcentage);
+        preparedStatement.setInt(3,idBoisson);
         preparedStatement.executeUpdate();
     }
 
