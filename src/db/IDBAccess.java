@@ -156,7 +156,15 @@ public interface IDBAccess {
 
     //Comment function
 
-    void addComment(int note, String commentBy, Utilisateur user, String drinkName) throws SQLException;
+    /**
+     * Permet d'ajouter un commentaire
+     * @param note note attribuée à la bière
+     * @param comment texte du commentaire
+     * @param user utilisateur courant
+     * @param drinkName nom de la boisson commenté
+     * @throws SQLException
+     */
+    void addComment(int note, String comment, Utilisateur user, String drinkName) throws SQLException;
 
     /**
      * Permet de récuper tout les commentaires d'une boisson
